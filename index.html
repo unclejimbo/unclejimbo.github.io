@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="en-US">
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Penulis'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -128,7 +128,7 @@
   <title> unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en-US">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Beranda
+            Home
           </a>
         </li>
       
@@ -195,7 +195,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Kategori
+            Categories
           </a>
         </li>
       
@@ -205,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Tentang
+            About
           </a>
         </li>
       
@@ -215,7 +215,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Arsip
+            Archives
           </a>
         </li>
       
@@ -271,7 +271,7 @@
   <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="unclejimbo">
+    <meta itemprop="name" content="unclejimbo (王少东)">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="/images/me.png">
   </span>
@@ -307,7 +307,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Diposting di</span>
+              <span class="post-meta-item-text">Posted on</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T14:41:00+08:00">
                 2016-12-15
               </time>
@@ -324,7 +324,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">Di</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
@@ -370,85 +370,14 @@
 
       
         
-          
-            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.</p>
-<p>For many shapes, there exist natural bases where they stand on so the upright direction should be the normal to that base. However, some other shapes in nature (consider a swimmer) may not exhibit a clear standing base so telling the upright orientation could be more subtle.</p>
-<p>The following sections summarize existing methods (to the best of my knowledge, they are all of them) and address existing issues.</p>
-<h1 id="Known-Methods"><a href="#Known-Methods" class="headerlink" title="Known Methods"></a>Known Methods</h1><ol>
-<li>Fu08<ul>
-<li>Pipeline:<ul>
-<li>computing convex hull</li>
-<li>generating hand-crafted features</li>
-<li>training on random forest + support vector machine</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark</li>
-<li>Precision: 87.5%</li>
-<li>Timing: 10.62s (2.13GHz)</li>
-</ul>
-</li>
-<li>Lin12<ul>
-<li>Pipeline:<ul>
-<li>computing convex hull</li>
-<li>generating hand-crafted features</li>
-<li>combining scores linearly</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark (120 selected)</li>
-<li>Precision: 79%</li>
-<li>Timing: 154s (2.33GHz <em>\</em>including time to compute best view*)</li>
-</ul>
-</li>
-<li>Jin12 &amp; Wang14 (<em>\</em>the second method is an improvement on the first one, statistics below accounts for the newer method only*)<ul>
-<li>Pipeline:<ul>
-<li>optimizing against the projection/tensor matrix’s rank</li>
-<li>low rank matrix corresponds to a model posed in axis-aligned manner</li>
-<li>finding the base from 6 candidate orientations</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark</li>
-<li>Precision: about 70%</li>
-<li>Timing: 1-2mins (3.30GHz)</li>
-</ul>
-</li>
-<li>Han15<ul>
-<li>Pipeline:<ul>
-<li>using view selection methods to compute view scores</li>
-<li>clustering views whose scores are low as model base candidates</li>
-<li>determining upright orientation w.r.t. several hand-crafted features</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark</li>
-<li>Precision: 79%</li>
-<li>Timing: 7.8s (2.0GHz)</li>
-</ul>
-</li>
-<li>Liu16<ul>
-<li>Pipeline:<ul>
-<li>voxelizing shapes</li>
-<li>training a classification convnet to dispatch input shapes</li>
-<li>training a regression convnet for each shape category to find upright orientation</li>
-</ul>
-</li>
-<li>Data Set: ModelNet10</li>
-<li>Precision: 90.1% (<em>\</em>with convnets clustring*)</li>
-<li>Timing: 0.15s (3.20GHz)</li>
-</ul>
-</li>
-</ol>
-<h1 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h1><ol>
-<li>Most man-made models are supposed to stand on its own so computing the convex hull and assigning a hull face as supporting base is appropriate. On the other hand, natural models like human may pose large deformation so there is no clear supporting base. Previous methods failed to solve this conflict.</li>
-<li>Method 1 and 5 are still short on training data and the generation power on unseen models is limited.</li>
-<li>Other methods based on hand-crafted features and criterions usually give inferior results.</li>
-</ol>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>Fu H, Cohen-Or D, Dror G, et al. Upright orientation of man-made objects[C]. ACM transactions on graphics (TOG). ACM, 2008, 27(3): 42.</p>
-<p>Lin C K, Tai W K. Automatic upright orientation and good view recognition for 3D man-made models[J]. Pattern Recognition, 2012, 45(4): 1524-1530.</p>
-<p>Jin Y, Wu Q, Liu L. Unsupervised upright orientation of man-made models[J]. Graphical Models, 2012, 74(4): 99-108.</p>
-<p>Wang W, Liu X, Liu L. Upright orientation of 3D shapes via tensor rank minimization[J]. Journal of Mechanical Science and Technology, 2014, 28(7): 2469-2477.</p>
-<p>Han HL,Wang WC,Hua M.Getting upright orientation of 3D objects via viewpoint scoring.Ruan Jian Xue Bao/Journal of Software,2015,26(10):2720?2732(in Chinese).</p>
-<p>Liu Z, Zhang J, Liu L. Upright orientation of 3D shapes with Convolutional Networks[J]. Graphical Models, 2016, 85: 22-29.</p>
-
-          
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.</p>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/15/Uprigt-Summary/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -510,15 +439,15 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/me.png"
-               alt="unclejimbo" />
-          <p class="site-author-name" itemprop="name">unclejimbo</p>
+               alt="unclejimbo (王少东)" />
+          <p class="site-author-name" itemprop="name">unclejimbo (王少东)</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">1</span>
-              <span class="site-state-item-name">posting</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -526,7 +455,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/categories">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">kategori</span>
+                <span class="site-state-item-name">categories</span>
               </a>
             </div>
           
@@ -560,15 +489,6 @@
                     <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="wangsd@ios.ac.cn" target="_blank" title="email">
-                  
-                    <i class="fa fa-fw fa-email"></i>
-                  
-                  email
                 </a>
               </span>
             
@@ -611,7 +531,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">unclejimbo</span>
+  <span class="author" itemprop="copyrightHolder">unclejimbo (王少东)</span>
 </div>
 
 

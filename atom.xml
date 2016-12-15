@@ -5,11 +5,11 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://unclejimbo.github.io/"/>
-  <updated>2016-12-15T08:54:17.548Z</updated>
+  <updated>2016-12-15T10:43:23.272Z</updated>
   <id>https://unclejimbo.github.io/</id>
   
   <author>
-    <name>unclejimbo</name>
+    <name>unclejimbo (王少东)</name>
     
   </author>
   
@@ -20,9 +20,10 @@
     <link href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/"/>
     <id>https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/</id>
     <published>2016-12-15T06:41:00.000Z</published>
-    <updated>2016-12-15T08:54:17.548Z</updated>
+    <updated>2016-12-15T10:43:23.272Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.</p>
+<a id="more"></a>
 <p>For many shapes, there exist natural bases where they stand on so the upright direction should be the normal to that base. However, some other shapes in nature (consider a swimmer) may not exhibit a clear standing base so telling the upright orientation could be more subtle.</p>
 <p>The following sections summarize existing methods (to the best of my knowledge, they are all of them) and address existing issues.</p>
 <h1 id="Known-Methods"><a href="#Known-Methods" class="headerlink" title="Known Methods"></a>Known Methods</h1><ol>
@@ -47,10 +48,10 @@
 </li>
 <li>Data Set: Princeton Shape Benchmark (120 selected)</li>
 <li>Precision: 79%</li>
-<li>Timing: 154s (2.33GHz <em>\</em>including time to compute best view*)</li>
+<li>Timing: 154s (2.33GHz <em>including time to compute best view</em>)</li>
 </ul>
 </li>
-<li>Jin12 &amp; Wang14 (<em>\</em>the second method is an improvement on the first one, statistics below accounts for the newer method only*)<ul>
+<li>Jin12 &amp; Wang14 (<em>the second method is an improvement on the first one, statistics below accounts for the newer method only</em>)<ul>
 <li>Pipeline:<ul>
 <li>optimizing against the projection/tensor matrix’s rank</li>
 <li>low rank matrix corresponds to a model posed in axis-aligned manner</li>
@@ -82,7 +83,7 @@
 </ul>
 </li>
 <li>Data Set: ModelNet10</li>
-<li>Precision: 90.1% (<em>\</em>with convnets clustring*)</li>
+<li>Precision: 90.1% (<em>with convnets clustring</em>)</li>
 <li>Timing: 0.15s (3.20GHz)</li>
 </ul>
 </li>
@@ -102,7 +103,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;Detecting the upright orientat
+      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.&lt;/p&gt;
     
     </summary>
     

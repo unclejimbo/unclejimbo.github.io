@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="en-US">
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -92,7 +92,7 @@
 <meta property="og:url" content="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/index.html">
 <meta property="og:site_name" content="unclejimbo's site">
 <meta property="og:description" content="IntroductionDetecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis a">
-<meta property="og:updated_time" content="2016-12-15T08:54:17.548Z">
+<meta property="og:updated_time" content="2016-12-15T10:43:23.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Upright Orientation Detection Methods">
 <meta name="twitter:description" content="IntroductionDetecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis a">
@@ -109,7 +109,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Penulis'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -132,7 +132,7 @@
   <title> Upright Orientation Detection Methods | unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en-US">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -187,7 +187,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Beranda
+            Home
           </a>
         </li>
       
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Kategori
+            Categories
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Tentang
+            About
           </a>
         </li>
       
@@ -217,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Arsip
+            Archives
           </a>
         </li>
       
@@ -273,7 +273,7 @@
   <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="unclejimbo">
+    <meta itemprop="name" content="unclejimbo (王少东)">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="/images/me.png">
   </span>
@@ -306,7 +306,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Diposting di</span>
+              <span class="post-meta-item-text">Posted on</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T14:41:00+08:00">
                 2016-12-15
               </time>
@@ -323,7 +323,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">Di</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
@@ -369,6 +369,7 @@
 
       
         <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.</p>
+<a id="more"></a>
 <p>For many shapes, there exist natural bases where they stand on so the upright direction should be the normal to that base. However, some other shapes in nature (consider a swimmer) may not exhibit a clear standing base so telling the upright orientation could be more subtle.</p>
 <p>The following sections summarize existing methods (to the best of my knowledge, they are all of them) and address existing issues.</p>
 <h1 id="Known-Methods"><a href="#Known-Methods" class="headerlink" title="Known Methods"></a>Known Methods</h1><ol>
@@ -393,10 +394,10 @@
 </li>
 <li>Data Set: Princeton Shape Benchmark (120 selected)</li>
 <li>Precision: 79%</li>
-<li>Timing: 154s (2.33GHz <em>\</em>including time to compute best view*)</li>
+<li>Timing: 154s (2.33GHz <em>including time to compute best view</em>)</li>
 </ul>
 </li>
-<li>Jin12 &amp; Wang14 (<em>\</em>the second method is an improvement on the first one, statistics below accounts for the newer method only*)<ul>
+<li>Jin12 &amp; Wang14 (<em>the second method is an improvement on the first one, statistics below accounts for the newer method only</em>)<ul>
 <li>Pipeline:<ul>
 <li>optimizing against the projection/tensor matrix’s rank</li>
 <li>low rank matrix corresponds to a model posed in axis-aligned manner</li>
@@ -428,7 +429,7 @@
 </ul>
 </li>
 <li>Data Set: ModelNet10</li>
-<li>Precision: 90.1% (<em>\</em>with convnets clustring*)</li>
+<li>Precision: 90.1% (<em>with convnets clustring</em>)</li>
 <li>Timing: 0.15s (3.20GHz)</li>
 </ul>
 </li>
@@ -526,10 +527,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Daftar Isi
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Ikhtisar
+            Overview
           </li>
         </ul>
       
@@ -538,15 +539,15 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/me.png"
-               alt="unclejimbo" />
-          <p class="site-author-name" itemprop="name">unclejimbo</p>
+               alt="unclejimbo (王少东)" />
+          <p class="site-author-name" itemprop="name">unclejimbo (王少东)</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">1</span>
-              <span class="site-state-item-name">posting</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -554,7 +555,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/categories">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">kategori</span>
+                <span class="site-state-item-name">categories</span>
               </a>
             </div>
           
@@ -588,15 +589,6 @@
                     <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="wangsd@ios.ac.cn" target="_blank" title="email">
-                  
-                    <i class="fa fa-fw fa-email"></i>
-                  
-                  email
                 </a>
               </span>
             
@@ -655,7 +647,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">unclejimbo</span>
+  <span class="author" itemprop="copyrightHolder">unclejimbo (王少东)</span>
 </div>
 
 

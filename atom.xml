@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://unclejimbo.github.io/"/>
-  <updated>2017-01-05T08:35:19.601Z</updated>
+  <updated>2017-02-22T13:17:01.077Z</updated>
   <id>https://unclejimbo.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RTTI in C++</title>
+    <link href="https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/"/>
+    <id>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</id>
+    <published>2017-02-22T10:30:37.000Z</published>
+    <updated>2017-02-22T13:17:01.077Z</updated>
+    
+    <content type="html"><![CDATA[<p>RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runtime.</p>
+<ul>
+<li><code>dynamic_cast&lt;&gt;</code></li>
+<li><code>typeid()</code></li>
+</ul>
+<p>Those are the main tools to achieve RTTI. Some of you may frown upon this RTTI thing because it seems to have a bad reputation out there, and there is a good reason for that. Generally you want to stay away from this feature because static typing is much safer than dynamic typing thanks to the compiler, and it gives you runtime overheads as well. So why is it useful?</p>
+<a id="more"></a>
+<h1 id="Walking-around-the-Inheritance-Graph"><a href="#Walking-around-the-Inheritance-Graph" class="headerlink" title="Walking around the Inheritance Graph"></a>Walking around the Inheritance Graph</h1><p>Generally we use virtual inheritance and polymorphism because we only care about the interface but not the exact implementations. However, some derived classes may have specific method that doesn’t fit into the interface in any way. Although it is possible to add another virtual function to the base class and all its derived classes and let them provide empty implementations. But doesn’t that sounds awkward when you tell every Person class to program() when a Programmer class has to? It might be more reasonable to recover the true type (not exactly right with dynamic_cast&lt;&gt;, I’ll talk about it later) of a polymorphic type and call the class’s unique function as needed.</p>
+<p><code>dynamic_cast&lt;&gt;</code> is your first choice to achieve this. Consider the following codes,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class Base1</div><div class="line">&#123;</div><div class="line">  virtual void base1Fcn();</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Base2</div><div class="line">&#123;</div><div class="line">  virtual void base2Fcn();</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Derived : public Base1, public Base2</div><div class="line">&#123;</div><div class="line">  void base1Fcn() override;</div><div class="line">  void base2Fcn() override;</div><div class="line">  virtual void derivedFcn();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// upcast, which is just good old polymorphic pointers</div><div class="line">Derived* pd = new Derived();</div><div class="line">Base1* pb1 = pd;</div><div class="line">Base2* pb2 = dynamic_cast&lt;Base2*&gt;(pd); // Same as above, no explicit cast needed</div><div class="line"></div><div class="line">// downcast, which casts base pointer to derived class</div><div class="line">Base1* pb1 = new Derived();</div><div class="line">Derived* pd = dynamic_cast&lt;Derived*&gt;(pb1);</div><div class="line"></div><div class="line">// crosscast, which casts from one base pointer to a sibling</div><div class="line">Base1* pb1 = new Derived();</div><div class="line">Base2* pb2 = dynamic_cast&lt;Base2*&gt;(pb1);</div></pre></td></tr></table></figure>
+<p>As is quite clear in the codes and comments, you can use <code>dynamic_cast&lt;&gt;</code> to walk around the inheritance graph get to the specific class you need, as long as virtual inheritance is used. The name upcast, downcast, and crosscast come from the tradition to draw base class on top of the derived in an inheritance graph.</p>
+<h1 id="Querying-the-Exact-Type"><a href="#Querying-the-Exact-Type" class="headerlink" title="Querying the Exact Type"></a>Querying the Exact Type</h1><p>Remember earlier I said that <code>dynamic_cast&lt;&gt;</code> isn’t really about recovering the true type of a polymorphic pointer. Let’s say we have another class down the inheritance graph,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class FurtherDerived : public Derived</div><div class="line">&#123;</div><div class="line">  void derivedFcn() override;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Base1* pb1 = new FurtherDerived();</div><div class="line">Derived* pd = dynamic_cast&lt;Derived*&gt;(pb1); // See? Derived is not the real type pb1 points to</div><div class="line">pd-&gt;derivedFc(); // But this will work</div></pre></td></tr></table></figure>
+<p>Bjarne Stroustrup has made this quite clear in TCPL,</p>
+<blockquote>
+<p>From a design perspective, dynamic_cast can be seen as a mechanism for asking an object if it provides a given interface</p>
+</blockquote>
+<p>As long as the class provides the requested interface, <code>dynamic_cast&lt;&gt;</code> will work. In other words it works for all derived classes down the road. So how do we find out the exact type of an object? It’s <code>typeid()</code> to the rescue.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">typeid(*pb1) == typeid(FurtherDerived); // true</div><div class="line">typeid(*pb1) == typeid(Derived); // false</div></pre></td></tr></table></figure>
+<p>The return type of <code>typeid()</code> is <code>std::type_info</code> which has some other useful functions like hashing and name string. Keep in mind that <code>typid()</code> and <code>dynamic_cast&lt;&gt;</code> are designed for different tasks so you shouldn’t misuse both.</p>
+<h1 id="Alternatives"><a href="#Alternatives" class="headerlink" title="Alternatives"></a>Alternatives</h1><p>You could almost always redesign the inheritance relationships and use virtual functions to do dynamic dispatching. But do know that you have the right tools at hands and don’t hesitate to use them when needed.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runtime.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dynamic_cast&amp;lt;&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;typeid()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those are the main tools to achieve RTTI. Some of you may frown upon this RTTI thing because it seems to have a bad reputation out there, and there is a good reason for that. Generally you want to stay away from this feature because static typing is much safer than dynamic typing thanks to the compiler, and it gives you runtime overheads as well. So why is it useful?&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="https://unclejimbo.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="https://unclejimbo.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>Implementing MVCNN with Caffe, Part I</title>
@@ -73,7 +121,7 @@
     <link href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/"/>
     <id>https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/</id>
     <published>2016-12-15T06:41:00.000Z</published>
-    <updated>2016-12-28T08:46:25.592Z</updated>
+    <updated>2016-12-28T08:46:26.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.</p>
 <p><img src="http://7xllm5.com1.z0.glb.clouddn.com/upright.png" alt="Upright orientation of a chair"></p>

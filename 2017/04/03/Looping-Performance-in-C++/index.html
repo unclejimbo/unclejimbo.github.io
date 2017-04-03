@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Computer Graphics,Research Log," />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -86,18 +86,16 @@
 
 
 
-<meta name="description" content="IntroductionDetecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis a">
+<meta name="description" content="Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each v">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Upright Orientation Detection Methods">
-<meta property="og:url" content="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/index.html">
+<meta property="og:title" content="Looping Performance in C++">
+<meta property="og:url" content="https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/index.html">
 <meta property="og:site_name" content="unclejimbo's site">
-<meta property="og:description" content="IntroductionDetecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis a">
-<meta property="og:image" content="http://7xllm5.com1.z0.glb.clouddn.com/upright.png">
-<meta property="og:updated_time" content="2016-12-28T08:46:26.000Z">
+<meta property="og:description" content="Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each v">
+<meta property="og:updated_time" content="2017-04-03T19:54:44.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Upright Orientation Detection Methods">
-<meta name="twitter:description" content="IntroductionDetecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis a">
-<meta name="twitter:image" content="http://7xllm5.com1.z0.glb.clouddn.com/upright.png">
+<meta name="twitter:title" content="Looping Performance in C++">
+<meta name="twitter:description" content="Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each v">
 
 
 
@@ -125,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/"/>
+  <link rel="canonical" href="https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/"/>
 
 
 
 
 
-  <title> Upright Orientation Detection Methods | unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Looping Performance in C++ | unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -272,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/">
+  <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="unclejimbo (王少东)">
@@ -296,7 +294,7 @@
             
             
               
-                Upright Orientation Detection Methods
+                Looping Performance in C++
               
             
           </h1>
@@ -309,8 +307,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T14:41:00+00:00">
-                2016-12-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-03T20:21:00+01:00">
+                2017-04-03
               </time>
             
 
@@ -328,8 +326,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Graphics</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -343,8 +341,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/15/Uprigt-Summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/15/Uprigt-Summary/" itemprop="commentCount"></span>
+                <a href="/2017/04/03/Looping-Performance-in-C++/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/03/Looping-Performance-in-C++/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -370,85 +368,23 @@
       
 
       
-        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.</p>
-<p><img src="http://7xllm5.com1.z0.glb.clouddn.com/upright.png" alt="Upright orientation of a chair"></p>
-<p>(<em>Upright orientation of a chair</em>)</p>
+        <p>Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each version is 10 times faster than the raw loop. What?</p>
 <a id="more"></a>
-<p>For many shapes, there exist natural bases where they naturally stand on so the upright direction should be the normal to that base. However, other shapes (consider a swimmer) may not exhibit a clear standing base so telling this problem could be more subtle.</p>
-<p>The following sections summarize existing methods (to the best of my knowledge, they are all of them) and address their issues and limitations.</p>
-<h1 id="Known-Methods"><a href="#Known-Methods" class="headerlink" title="Known Methods"></a>Known Methods</h1><ol>
-<li>Fu08<ul>
-<li>Pipeline:<ul>
-<li>computing convex hull</li>
-<li>generating hand-crafted features</li>
-<li>training on random forest + support vector machine</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark</li>
-<li>Precision: 87.5%</li>
-<li>Timing: 10.62s (2.13GHz)</li>
-</ul>
-</li>
-<li>Lin12<ul>
-<li>Pipeline:<ul>
-<li>computing convex hull</li>
-<li>generating hand-crafted features</li>
-<li>combining scores linearly</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark (120 selected)</li>
-<li>Precision: 79%</li>
-<li>Timing: 154s (2.33GHz <em>including time to compute best view</em>)</li>
-</ul>
-</li>
-<li>Jin12 &amp; Wang14 (<em>the second method is an improvement on the first one, statistics below accounts for the newer method only</em>)<ul>
-<li>Pipeline:<ul>
-<li>optimizing against the projection/tensor matrix’s rank</li>
-<li>low rank matrix corresponds to a model posed in axis-aligned manner</li>
-<li>finding the base from 6 candidate orientations</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark</li>
-<li>Precision: about 70%</li>
-<li>Timing: 1-2mins (3.30GHz)</li>
-</ul>
-</li>
-<li>Han15<ul>
-<li>Pipeline:<ul>
-<li>using view selection methods to compute view scores</li>
-<li>clustering views whose scores are low as model base candidates</li>
-<li>determining upright orientation w.r.t. several hand-crafted features</li>
-</ul>
-</li>
-<li>Data Set: Princeton Shape Benchmark</li>
-<li>Precision: 79%</li>
-<li>Timing: 7.8s (2.0GHz)</li>
-</ul>
-</li>
-<li>Liu16<ul>
-<li>Pipeline:<ul>
-<li>voxelizing shapes</li>
-<li>training a classification convnet to dispatch input shapes</li>
-<li>training a regression convnet for each shape category to find upright orientation</li>
-</ul>
-</li>
-<li>Data Set: ModelNet10</li>
-<li>Precision: 90.1% (<em>with convnets clustring</em>)</li>
-<li>Timing: 0.15s (3.20GHz)</li>
-</ul>
-</li>
-</ol>
-<h1 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h1><ol>
-<li>Most man-made models are supposed to stand on its own so computing the convex hull and assigning a hull face as supporting base is appropriate. On the other hand, natural models like human may pose large deformation so there is no clear supporting base. Previous methods failed to solve this conflict.</li>
-<li>Method 1 and 5 are still short on training data and the generation power on unseen models is limited.</li>
-<li>Other methods based on hand-crafted features and criterions usually give inferior results.</li>
-</ol>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>Fu H, Cohen-Or D, Dror G, et al. Upright orientation of man-made objects[C]. ACM transactions on graphics (TOG). ACM, 2008, 27(3): 42.</p>
-<p>Lin C K, Tai W K. Automatic upright orientation and good view recognition for 3D man-made models[J]. Pattern Recognition, 2012, 45(4): 1524-1530.</p>
-<p>Jin Y, Wu Q, Liu L. Unsupervised upright orientation of man-made models[J]. Graphical Models, 2012, 74(4): 99-108.</p>
-<p>Wang W, Liu X, Liu L. Upright orientation of 3D shapes via tensor rank minimization[J]. Journal of Mechanical Science and Technology, 2014, 28(7): 2469-2477.</p>
-<p>Han HL,Wang WC,Hua M.Getting upright orientation of 3D objects via viewpoint scoring.Ruan Jian Xue Bao/Journal of Software,2015,26(10):2720?2732(in Chinese).</p>
-<p>Liu Z, Zhang J, Liu L. Upright orientation of 3D shapes with Convolutional Networks[J]. Graphical Models, 2016, 85: 22-29.</p>
+<h1 id="Test-for-yourself"><a href="#Test-for-yourself" class="headerlink" title="Test for yourself"></a>Test for yourself</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;array&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt;, 6&gt; buffers;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i) &#123;</div><div class="line">		buffers[i] = <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt;(<span class="number">480000</span>, <span class="number">0.5f</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">auto</span> tstart = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	<span class="keyword">auto</span> accum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i) &#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">size_t</span> j = <span class="number">0</span>; j &lt; buffers[i].size(); ++j) &#123;</div><div class="line">			<span class="keyword">if</span> (buffers[i][j] &lt; <span class="number">1.0f</span>)</div><div class="line">				++accum;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">auto</span> tend = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	<span class="keyword">auto</span> duration = tend - tstart;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Raw loop: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::milliseconds&gt;(duration).count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	tstart = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	accum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; buffer : buffers) &#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; value : buffer) &#123;</div><div class="line">			<span class="keyword">if</span> (value &lt; <span class="number">1.0f</span>)</div><div class="line">				++accum;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	tend = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	duration = tend - tstart;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt;<span class="string">"Range-based for loop: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::milliseconds&gt;(duration).count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	tstart = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	accum = <span class="number">0</span>;</div><div class="line">	<span class="built_in">std</span>::for_each(buffers.begin(), buffers.end(),</div><div class="line">		[&amp;accum](<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt;&amp; buffer) &#123;</div><div class="line">			<span class="built_in">std</span>::for_each(buffer.begin(), buffer.end(), [&amp;accum](<span class="keyword">float</span> value) &#123; <span class="keyword">if</span> (value &lt; <span class="number">1.0f</span>) ++accum; &#125;);</div><div class="line">		&#125;</div><div class="line">	);</div><div class="line">	tend = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	duration = tend - tstart;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"std::for_each: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::milliseconds&gt;(duration).count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>I was using VS2015 under Debug build. Here’s the output:</p>
+<blockquote>
+<p>Raw loop: 978</p>
+<p>Range-based for loop: 426</p>
+<p>std::for_each: 66</p>
+</blockquote>
+<p>However when I switched to Release build:</p>
+<blockquote>
+<p>Raw loop: 2</p>
+<p>Range-based for loop: 2</p>
+<p>std::for_each: 5</p>
+</blockquote>
+<p>That’s what I’ve been expecting. And when I changed time precision to nanoseconds it turned out that raw loop is slightly faster than the range-based for loop.</p>
+<h1 id="Lesson-learned"><a href="#Lesson-learned" class="headerlink" title="Lesson learned"></a>Lesson learned</h1><p>The compiler sure knows how to optimize your code. So do your profiling with optimization on.</p>
 
       
     </div>
@@ -472,9 +408,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Computer-Graphics/" rel="tag"># Computer Graphics</a>
-          
-            <a href="/tags/Research-Log/" rel="tag"># Research Log</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -483,15 +417,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/22/RTTI-in-C++/" rel="next" title="RTTI in C++">
+                <i class="fa fa-chevron-left"></i> RTTI in C++
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/" rel="prev" title="Implementing MVCNN with Caffe, Part I">
-                Implementing MVCNN with Caffe, Part I <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -656,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Known-Methods"><span class="nav-number">2.</span> <span class="nav-text">Known Methods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comments"><span class="nav-number">3.</span> <span class="nav-text">Comments</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-for-yourself"><span class="nav-number">1.</span> <span class="nav-text">Test for yourself</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lesson-learned"><span class="nav-number">2.</span> <span class="nav-text">Lesson learned</span></a></li></ol></div>
             
 
           </div>
@@ -787,9 +721,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'unclejimbos';
-      var disqus_identifier = '2016/12/15/Uprigt-Summary/';
+      var disqus_identifier = '2017/04/03/Looping-Performance-in-C++/';
 
-      var disqus_title = "Upright Orientation Detection Methods";
+      var disqus_title = "Looping Performance in C++";
 
 
       function run_disqus_script(disqus_script) {

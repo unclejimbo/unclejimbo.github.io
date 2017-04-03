@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://unclejimbo.github.io/"/>
-  <updated>2017-02-22T13:17:01.077Z</updated>
+  <updated>2017-04-03T19:54:44.524Z</updated>
   <id>https://unclejimbo.github.io/</id>
   
   <author>
@@ -16,10 +16,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Looping Performance in C++</title>
+    <link href="https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/"/>
+    <id>https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/</id>
+    <published>2017-04-03T19:21:00.000Z</published>
+    <updated>2017-04-03T19:54:44.524Z</updated>
+    
+    <content type="html"><![CDATA[<p>Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each version is 10 times faster than the raw loop. What?</p>
+<a id="more"></a>
+<h1 id="Test-for-yourself"><a href="#Test-for-yourself" class="headerlink" title="Test for yourself"></a>Test for yourself</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;array&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt;, 6&gt; buffers;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i) &#123;</div><div class="line">		buffers[i] = <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt;(<span class="number">480000</span>, <span class="number">0.5f</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">auto</span> tstart = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	<span class="keyword">auto</span> accum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i) &#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">size_t</span> j = <span class="number">0</span>; j &lt; buffers[i].size(); ++j) &#123;</div><div class="line">			<span class="keyword">if</span> (buffers[i][j] &lt; <span class="number">1.0f</span>)</div><div class="line">				++accum;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">auto</span> tend = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	<span class="keyword">auto</span> duration = tend - tstart;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Raw loop: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::milliseconds&gt;(duration).count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	tstart = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	accum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; buffer : buffers) &#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; value : buffer) &#123;</div><div class="line">			<span class="keyword">if</span> (value &lt; <span class="number">1.0f</span>)</div><div class="line">				++accum;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	tend = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	duration = tend - tstart;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt;<span class="string">"Range-based for loop: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::milliseconds&gt;(duration).count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	tstart = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	accum = <span class="number">0</span>;</div><div class="line">	<span class="built_in">std</span>::for_each(buffers.begin(), buffers.end(),</div><div class="line">		[&amp;accum](<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt;&amp; buffer) &#123;</div><div class="line">			<span class="built_in">std</span>::for_each(buffer.begin(), buffer.end(), [&amp;accum](<span class="keyword">float</span> value) &#123; <span class="keyword">if</span> (value &lt; <span class="number">1.0f</span>) ++accum; &#125;);</div><div class="line">		&#125;</div><div class="line">	);</div><div class="line">	tend = <span class="built_in">std</span>::chrono::high_resolution_clock::now();</div><div class="line">	duration = tend - tstart;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"std::for_each: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::milliseconds&gt;(duration).count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>I was using VS2015 under Debug build. Here’s the output:</p>
+<blockquote>
+<p>Raw loop: 978</p>
+<p>Range-based for loop: 426</p>
+<p>std::for_each: 66</p>
+</blockquote>
+<p>However when I switched to Release build:</p>
+<blockquote>
+<p>Raw loop: 2</p>
+<p>Range-based for loop: 2</p>
+<p>std::for_each: 5</p>
+</blockquote>
+<p>That’s what I’ve been expecting. And when I changed time precision to nanoseconds it turned out that raw loop is slightly faster than the range-based for loop.</p>
+<h1 id="Lesson-learned"><a href="#Lesson-learned" class="headerlink" title="Lesson learned"></a>Lesson learned</h1><p>The compiler sure knows how to optimize your code. So do your profiling with optimization on.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each version is 10 times faster than the raw loop. What?&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="https://unclejimbo.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="https://unclejimbo.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>RTTI in C++</title>
     <link href="https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/"/>
     <id>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</id>
-    <published>2017-02-22T10:30:37.000Z</published>
+    <published>2017-02-22T18:30:37.000Z</published>
     <updated>2017-02-22T13:17:01.077Z</updated>
     
     <content type="html"><![CDATA[<p>RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runtime.</p>
@@ -67,7 +106,7 @@
     <title>Implementing MVCNN with Caffe, Part I</title>
     <link href="https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/"/>
     <id>https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/</id>
-    <published>2017-01-04T16:00:00.000Z</published>
+    <published>2017-01-05T00:00:00.000Z</published>
     <updated>2017-01-05T08:35:19.601Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This post is about a paper published in ICCV2015, called <a href="http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Su_Multi-View_Convolutional_Neural_ICCV_2015_paper.pdf" target="_blank" rel="external">“Multi-view Convolutional Neural Networks for 3D Shape Recognition”</a>. It describes a method to classify 3d shape models using 2d image classification networks. While the authors have open-sourced their matlab implementation on <a href="https://github.com/suhangpro/mvcnn" target="_blank" rel="external">GitHub</a>, here I’ll try to implement this network with Caffe.</p>
@@ -120,7 +159,7 @@
     <title>Upright Orientation Detection Methods</title>
     <link href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/"/>
     <id>https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/</id>
-    <published>2016-12-15T06:41:00.000Z</published>
+    <published>2016-12-15T14:41:00.000Z</published>
     <updated>2016-12-28T08:46:26.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Detecting the upright orientation of a 3d shape is a basic yet difficult problem in CG literature. It often serves as a preprocessing step for many geometry processing and shape analysis algorithms such as shape recognition and retrieval.</p>

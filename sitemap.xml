@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/</loc>
+    
+    <lastmod>2017-04-03T19:54:44.524Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</loc>
     
     <lastmod>2017-02-22T13:17:01.077Z</lastmod>

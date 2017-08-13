@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/</loc>
+    
+    <lastmod>2017-08-13T15:33:21.432Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://unclejimbo.github.io/2017/06/14/Mesh-Processing-with-CGAL/</loc>
     
     <lastmod>2017-06-18T10:08:19.050Z</lastmod>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://unclejimbo.github.io/"/>
-  <updated>2017-06-18T10:08:19.050Z</updated>
+  <updated>2017-08-13T15:33:21.432Z</updated>
   <id>https://unclejimbo.github.io/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Some Notes on OpenGL Vertex Specification</title>
+    <link href="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/"/>
+    <id>https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/</id>
+    <published>2017-08-13T10:34:09.000Z</published>
+    <updated>2017-08-13T15:33:21.432Z</updated>
+    
+    <content type="html"><![CDATA[<p>The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the vertex specification thing, e.g.</p>
+<ul>
+<li>Vertex Array Object</li>
+<li>Vertex Buffer Object</li>
+<li><code>GL_VERTEX_ARRAY_BUFFER</code></li>
+<li><code>glVertexAttribPointer</code></li>
+<li><code>glEnableVertexAttribArray</code></li>
+</ul>
+<p>What’s the fuss about those funny names? It really needs more conceptual explanations before those words could make any sense.</p>
+<a id="more"></a>
+<h1 id="Vertex-Attribute"><a href="#Vertex-Attribute" class="headerlink" title="Vertex Attribute"></a>Vertex Attribute</h1><p>Suppose you need vertex positions and vertex normals to correctly render an image. Thus your vertex shader might look something like</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">layout</span> <span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> position;</div><div class="line">(<span class="keyword">layout</span> <span class="keyword">location</span> = <span class="number">1</span>) <span class="keyword">in</span> <span class="type">vec3</span> normal;</div><div class="line"></div><div class="line"><span class="type">void</span> main()</div><div class="line">&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The vertex position and vertex normal are called <strong>vertex attributes</strong>, which OpenGL requires as input for your shader to correctly render a result. Actually, in the old days of OpenGL, the input specifier wasn’t <code>in</code> but indeed <code>attribute</code>, so the shader should look like</p>
+<pre><code class="glsl"><span class="keyword">attribute</span> <span class="type">vec3</span> position;
+<span class="keyword">attribute</span> <span class="type">vec3</span> normal;
+
+<span class="type">void</span> main()
+{
+    <span class="comment">//...</span>
+}
+</code></pre>
+<p>Although <code>attribute</code> was deprecated since OpenGL 3.3 (as well as <code>varying</code>), this term still remains in the API, such as <code>glVertexAttribPointer</code> and <code>glEnableVertexAttribArray</code>. Now let’s talk more about them.</p>
+<h2 id="glVertexAttribPointer"><a href="#glVertexAttribPointer" class="headerlink" title="glVertexAttribPointer"></a>glVertexAttribPointer</h2><p>As is often the case, we pack the vertex attribute data into <strong>Vertex Buffer Objects</strong> and stream the data to OpenGL. For the previous shader, there are several common ways to store the data.</p>
+<ul>
+<li>Into separate VBOs<ul>
+<li>VBO1 = P1 P2 P3 …</li>
+<li>VBO2 = N1 N2 N3 …</li>
+</ul>
+</li>
+<li>Concatenated<ul>
+<li>VBO = P1 P2 P3 … N1 N2 N3 …</li>
+</ul>
+</li>
+<li>Interleaved<ul>
+<li>VBO = P1 N1 P2 N2 P3 N3 …</li>
+</ul>
+</li>
+</ul>
+<p>In any case, you need to bind the correct vertex buffer object to the <code>GL_ARRAY_BUFFER</code> binding point and tell OpenGL how to interpret the data using <code>glVertexAttribPointer</code>. It actually works quite like a pointer, moving around the buffer to find the desired value for the specific attribute.</p>
+<h2 id="glEnableVertexAttribArray"><a href="#glEnableVertexAttribArray" class="headerlink" title="glEnableVertexAttribArray"></a>glEnableVertexAttribArray</h2><p>After the specification of one attribute, you need to enable this <strong>vertex attribute array</strong> for the shader to use the data. It’s called this way because the vertex attribute data are indeed stored in an array. But why the hell do I need to enable this array? Because when you don’t, OpenGL let you set a static vertex attribute value at that location using <code>glVertexAttrib*</code>. This is called the <strong>non-array attribute</strong> of OpenGL and is associated to an OpenGL context. Its job is pretty similar to an <code>uniform</code> and you might only want to use static vertex attribute in certain cases for the sake of efficiency. Otherwise, use <code>uniform</code> for attribute that remain constant across vertex and use vertex attribute array for the per-vertex data.</p>
+<h1 id="Vertex-Array-Object"><a href="#Vertex-Array-Object" class="headerlink" title="Vertex Array Object"></a>Vertex Array Object</h1><p>As describted in the previous section, the common work flow before you could draw with a shader is to first use <code>glBindBuffer</code> to bind a VBO to <code>GL_ARRAY_BUFFER</code>, then use <code>glVertexAttribPointer</code> to specify the vertex format and finally use <code>glEnableVertexAtrribArray</code> for this data to be operated. You repeat this procedure for every vertex attribute required by the shader and then you could draw with OpenGL. This seems quite cubersome, so OpenGL let you use a VAO to record those specifications then you don’t need to repeat those procedures whenever you want to draw with the set of data. However, VAO does not record the data in the vbo, so changing the data will cause VAO to update automatically.</p>
+<hr>
+<p>That’s pretty much about it. Still these terms are quite similar to each other yet with different meanings and purposes. Try not to get confused. For more advanced usage of vertex specification, such as instancing, separate attribute format, e.g., please read the wiki page in the reference.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.khronos.org/opengl/wiki/Vertex_Specification" target="_blank" rel="external">https://www.khronos.org/opengl/wiki/Vertex_Specification</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the vertex specification thing, e.g.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vertex Array Object&lt;/li&gt;
+&lt;li&gt;Vertex Buffer Object&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GL_VERTEX_ARRAY_BUFFER&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;glVertexAttribPointer&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;glEnableVertexAttribArray&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What’s the fuss about those funny names? It really needs more conceptual explanations before those words could make any sense.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Computer Graphics" scheme="https://unclejimbo.github.io/categories/Computer-Graphics/"/>
+    
+    
+      <category term="Computer Graphics" scheme="https://unclejimbo.github.io/tags/Computer-Graphics/"/>
+    
+      <category term="OpenGL" scheme="https://unclejimbo.github.io/tags/OpenGL/"/>
+    
+  </entry>
   
   <entry>
     <title>Mesh Processing with CGAL</title>

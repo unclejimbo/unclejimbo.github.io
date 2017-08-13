@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C++," />
+  <meta name="keywords" content="Computer Graphics,OpenGL," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runti">
+<meta name="description" content="The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the verte">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RTTI in C++">
-<meta property="og:url" content="https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/index.html">
+<meta property="og:title" content="Some Notes on OpenGL Vertex Specification">
+<meta property="og:url" content="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/index.html">
 <meta property="og:site_name" content="unclejimbo's site">
-<meta property="og:description" content="RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runti">
-<meta property="og:updated_time" content="2017-02-22T13:17:01.077Z">
+<meta property="og:description" content="The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the verte">
+<meta property="og:updated_time" content="2017-08-13T15:33:21.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RTTI in C++">
-<meta name="twitter:description" content="RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runti">
+<meta name="twitter:title" content="Some Notes on OpenGL Vertex Specification">
+<meta name="twitter:description" content="The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the verte">
 
 
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/"/>
+  <link rel="canonical" href="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/"/>
 
 
 
 
 
-  <title> RTTI in C++ | unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Some Notes on OpenGL Vertex Specification | unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -289,7 +289,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/">
+  <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="unclejimbo (王少东)">
@@ -313,7 +313,7 @@
             
             
               
-                RTTI in C++
+                Some Notes on OpenGL Vertex Specification
               
             
           </h1>
@@ -326,8 +326,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T18:30:37+00:00">
-                2017-02-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-13T11:34:09+01:00">
+                2017-08-13
               </time>
             
 
@@ -345,8 +345,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
+                  <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Graphics</span>
                   </a>
                 </span>
 
@@ -360,8 +360,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/02/22/RTTI-in-C++/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/22/RTTI-in-C++/" itemprop="commentCount"></span>
+                <a href="/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,27 +387,50 @@
       
 
       
-        <p>RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runtime.</p>
+        <p>The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the vertex specification thing, e.g.</p>
 <ul>
-<li><code>dynamic_cast&lt;&gt;</code></li>
-<li><code>typeid()</code></li>
+<li>Vertex Array Object</li>
+<li>Vertex Buffer Object</li>
+<li><code>GL_VERTEX_ARRAY_BUFFER</code></li>
+<li><code>glVertexAttribPointer</code></li>
+<li><code>glEnableVertexAttribArray</code></li>
 </ul>
-<p>Those are the main tools to achieve RTTI. Some of you may frown upon this RTTI thing because it seems to have a bad reputation out there, and there is a good reason for that. Generally you want to stay away from this feature because static typing is much safer than dynamic typing thanks to the compiler, and it gives you runtime overheads as well. So why is it useful?</p>
+<p>What’s the fuss about those funny names? It really needs more conceptual explanations before those words could make any sense.</p>
 <a id="more"></a>
-<h1 id="Walking-around-the-Inheritance-Graph"><a href="#Walking-around-the-Inheritance-Graph" class="headerlink" title="Walking around the Inheritance Graph"></a>Walking around the Inheritance Graph</h1><p>Generally we use virtual inheritance and polymorphism because we only care about the interface but not the exact implementations. However, some derived classes may have specific method that doesn’t fit into the interface in any way. Although it is possible to add another virtual function to the base class and all its derived classes and let them provide empty implementations. But doesn’t that sounds awkward when you tell every Person class to program() when a Programmer class has to? It might be more reasonable to recover the true type (not exactly right with dynamic_cast&lt;&gt;, I’ll talk about it later) of a polymorphic type and call the class’s unique function as needed.</p>
-<p><code>dynamic_cast&lt;&gt;</code> is your first choice to achieve this. Consider the following codes,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class Base1</div><div class="line">&#123;</div><div class="line">  virtual void base1Fcn();</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Base2</div><div class="line">&#123;</div><div class="line">  virtual void base2Fcn();</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Derived : public Base1, public Base2</div><div class="line">&#123;</div><div class="line">  void base1Fcn() override;</div><div class="line">  void base2Fcn() override;</div><div class="line">  virtual void derivedFcn();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// upcast, which is just good old polymorphic pointers</div><div class="line">Derived* pd = new Derived();</div><div class="line">Base1* pb1 = pd;</div><div class="line">Base2* pb2 = dynamic_cast&lt;Base2*&gt;(pd); // Same as above, no explicit cast needed</div><div class="line"></div><div class="line">// downcast, which casts base pointer to derived class</div><div class="line">Base1* pb1 = new Derived();</div><div class="line">Derived* pd = dynamic_cast&lt;Derived*&gt;(pb1);</div><div class="line"></div><div class="line">// crosscast, which casts from one base pointer to a sibling</div><div class="line">Base1* pb1 = new Derived();</div><div class="line">Base2* pb2 = dynamic_cast&lt;Base2*&gt;(pb1);</div></pre></td></tr></table></figure>
-<p>As is quite clear in the codes and comments, you can use <code>dynamic_cast&lt;&gt;</code> to walk around the inheritance graph get to the specific class you need, as long as virtual inheritance is used. The name upcast, downcast, and crosscast come from the tradition to draw base class on top of the derived in an inheritance graph.</p>
-<h1 id="Querying-the-Exact-Type"><a href="#Querying-the-Exact-Type" class="headerlink" title="Querying the Exact Type"></a>Querying the Exact Type</h1><p>Remember earlier I said that <code>dynamic_cast&lt;&gt;</code> isn’t really about recovering the true type of a polymorphic pointer. Let’s say we have another class down the inheritance graph,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class FurtherDerived : public Derived</div><div class="line">&#123;</div><div class="line">  void derivedFcn() override;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Base1* pb1 = new FurtherDerived();</div><div class="line">Derived* pd = dynamic_cast&lt;Derived*&gt;(pb1); // See? Derived is not the real type pb1 points to</div><div class="line">pd-&gt;derivedFc(); // But this will work</div></pre></td></tr></table></figure>
-<p>Bjarne Stroustrup has made this quite clear in TCPL,</p>
-<blockquote>
-<p>From a design perspective, dynamic_cast can be seen as a mechanism for asking an object if it provides a given interface</p>
-</blockquote>
-<p>As long as the class provides the requested interface, <code>dynamic_cast&lt;&gt;</code> will work. In other words it works for all derived classes down the road. So how do we find out the exact type of an object? It’s <code>typeid()</code> to the rescue.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">typeid(*pb1) == typeid(FurtherDerived); // true</div><div class="line">typeid(*pb1) == typeid(Derived); // false</div></pre></td></tr></table></figure>
-<p>The return type of <code>typeid()</code> is <code>std::type_info</code> which has some other useful functions like hashing and name string. Keep in mind that <code>typid()</code> and <code>dynamic_cast&lt;&gt;</code> are designed for different tasks so you shouldn’t misuse both.</p>
-<h1 id="Alternatives"><a href="#Alternatives" class="headerlink" title="Alternatives"></a>Alternatives</h1><p>You could almost always redesign the inheritance relationships and use virtual functions to do dynamic dispatching. But do know that you have the right tools at hands and don’t hesitate to use them when needed.</p>
+<h1 id="Vertex-Attribute"><a href="#Vertex-Attribute" class="headerlink" title="Vertex Attribute"></a>Vertex Attribute</h1><p>Suppose you need vertex positions and vertex normals to correctly render an image. Thus your vertex shader might look something like</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">layout</span> <span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> position;</div><div class="line">(<span class="keyword">layout</span> <span class="keyword">location</span> = <span class="number">1</span>) <span class="keyword">in</span> <span class="type">vec3</span> normal;</div><div class="line"></div><div class="line"><span class="type">void</span> main()</div><div class="line">&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The vertex position and vertex normal are called <strong>vertex attributes</strong>, which OpenGL requires as input for your shader to correctly render a result. Actually, in the old days of OpenGL, the input specifier wasn’t <code>in</code> but indeed <code>attribute</code>, so the shader should look like</p>
+<pre><code class="glsl"><span class="keyword">attribute</span> <span class="type">vec3</span> position;
+<span class="keyword">attribute</span> <span class="type">vec3</span> normal;
+
+<span class="type">void</span> main()
+{
+    <span class="comment">//...</span>
+}
+</code></pre>
+<p>Although <code>attribute</code> was deprecated since OpenGL 3.3 (as well as <code>varying</code>), this term still remains in the API, such as <code>glVertexAttribPointer</code> and <code>glEnableVertexAttribArray</code>. Now let’s talk more about them.</p>
+<h2 id="glVertexAttribPointer"><a href="#glVertexAttribPointer" class="headerlink" title="glVertexAttribPointer"></a>glVertexAttribPointer</h2><p>As is often the case, we pack the vertex attribute data into <strong>Vertex Buffer Objects</strong> and stream the data to OpenGL. For the previous shader, there are several common ways to store the data.</p>
+<ul>
+<li>Into separate VBOs<ul>
+<li>VBO1 = P1 P2 P3 …</li>
+<li>VBO2 = N1 N2 N3 …</li>
+</ul>
+</li>
+<li>Concatenated<ul>
+<li>VBO = P1 P2 P3 … N1 N2 N3 …</li>
+</ul>
+</li>
+<li>Interleaved<ul>
+<li>VBO = P1 N1 P2 N2 P3 N3 …</li>
+</ul>
+</li>
+</ul>
+<p>In any case, you need to bind the correct vertex buffer object to the <code>GL_ARRAY_BUFFER</code> binding point and tell OpenGL how to interpret the data using <code>glVertexAttribPointer</code>. It actually works quite like a pointer, moving around the buffer to find the desired value for the specific attribute.</p>
+<h2 id="glEnableVertexAttribArray"><a href="#glEnableVertexAttribArray" class="headerlink" title="glEnableVertexAttribArray"></a>glEnableVertexAttribArray</h2><p>After the specification of one attribute, you need to enable this <strong>vertex attribute array</strong> for the shader to use the data. It’s called this way because the vertex attribute data are indeed stored in an array. But why the hell do I need to enable this array? Because when you don’t, OpenGL let you set a static vertex attribute value at that location using <code>glVertexAttrib*</code>. This is called the <strong>non-array attribute</strong> of OpenGL and is associated to an OpenGL context. Its job is pretty similar to an <code>uniform</code> and you might only want to use static vertex attribute in certain cases for the sake of efficiency. Otherwise, use <code>uniform</code> for attribute that remain constant across vertex and use vertex attribute array for the per-vertex data.</p>
+<h1 id="Vertex-Array-Object"><a href="#Vertex-Array-Object" class="headerlink" title="Vertex Array Object"></a>Vertex Array Object</h1><p>As describted in the previous section, the common work flow before you could draw with a shader is to first use <code>glBindBuffer</code> to bind a VBO to <code>GL_ARRAY_BUFFER</code>, then use <code>glVertexAttribPointer</code> to specify the vertex format and finally use <code>glEnableVertexAtrribArray</code> for this data to be operated. You repeat this procedure for every vertex attribute required by the shader and then you could draw with OpenGL. This seems quite cubersome, so OpenGL let you use a VAO to record those specifications then you don’t need to repeat those procedures whenever you want to draw with the set of data. However, VAO does not record the data in the vbo, so changing the data will cause VAO to update automatically.</p>
+<hr>
+<p>That’s pretty much about it. Still these terms are quite similar to each other yet with different meanings and purposes. Try not to get confused. For more advanced usage of vertex specification, such as instancing, separate attribute format, e.g., please read the wiki page in the reference.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.khronos.org/opengl/wiki/Vertex_Specification" target="_blank" rel="external">https://www.khronos.org/opengl/wiki/Vertex_Specification</a></p>
 
       
     </div>
@@ -431,7 +454,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C++</a>
+            <a href="/tags/Computer-Graphics/" rel="tag"># Computer Graphics</a>
+          
+            <a href="/tags/OpenGL/" rel="tag"># OpenGL</a>
           
         </div>
       
@@ -440,8 +465,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/" rel="next" title="Implementing MVCNN with Caffe, Part I">
-                <i class="fa fa-chevron-left"></i> Implementing MVCNN with Caffe, Part I
+              <a href="/2017/06/14/Mesh-Processing-with-CGAL/" rel="next" title="Mesh Processing with CGAL">
+                <i class="fa fa-chevron-left"></i> Mesh Processing with CGAL
               </a>
             
           </div>
@@ -449,10 +474,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/03/Looping-Performance-in-C++/" rel="prev" title="Looping Performance in C++">
-                Looping Performance in C++ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Walking-around-the-Inheritance-Graph"><span class="nav-number">1.</span> <span class="nav-text">Walking around the Inheritance Graph</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Querying-the-Exact-Type"><span class="nav-number">2.</span> <span class="nav-text">Querying the Exact Type</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alternatives"><span class="nav-number">3.</span> <span class="nav-text">Alternatives</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vertex-Attribute"><span class="nav-number">1.</span> <span class="nav-text">Vertex Attribute</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#glVertexAttribPointer"><span class="nav-number">1.1.</span> <span class="nav-text">glVertexAttribPointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#glEnableVertexAttribArray"><span class="nav-number">1.2.</span> <span class="nav-text">glEnableVertexAttribArray</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vertex-Array-Object"><span class="nav-number">2.</span> <span class="nav-text">Vertex Array Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -748,9 +769,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'unclejimbos';
-      var disqus_identifier = '2017/02/22/RTTI-in-C++/';
+      var disqus_identifier = '2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/';
 
-      var disqus_title = "RTTI in C++";
+      var disqus_title = "Some Notes on OpenGL Vertex Specification";
 
 
       function run_disqus_script(disqus_script) {

@@ -9,7 +9,7 @@
   <id>https://unclejimbo.github.io/</id>
   
   <author>
-    <name>unclejimbo (王少东)</name>
+    <name>unclejimbo</name>
     
   </author>
   
@@ -137,8 +137,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;http://www.cgal.org/index.html&quot;&gt;CGAL&lt;/a&gt;, which stands for the Computational Geometry Algorithms Library, is an important tool set to use and build geometric algorithms. It contains a tons of packages with various functionalities, so this time I’m only gonna explore a little part of this beast and figure out the basics to do mesh processing with CGAL.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://doc.cgal.org/latest/Surface_mesh_simplification/Illustration-Simplification-ALL.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;(&lt;em&gt;Mesh smoothing algorithm, picture taken from the &lt;a href=&quot;http://doc.cgal.org/latest/Surface_mesh_simplification/index.html#Chapter_Triangulated_Surface_Mesh_Simplification&quot;&gt;CGAL document&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;http://www.cgal.org/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CGAL&lt;/a&gt;, which stands for the Computational Geometry Algorithms Library, is an important tool set to use and build geometric algorithms. It contains a tons of packages with various functionalities, so this time I’m only gonna explore a little part of this beast and figure out the basics to do mesh processing with CGAL.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://doc.cgal.org/latest/Surface_mesh_simplification/Illustration-Simplification-ALL.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;(&lt;em&gt;Mesh smoothing algorithm, picture taken from the &lt;a href=&quot;http://doc.cgal.org/latest/Surface_mesh_simplification/index.html#Chapter_Triangulated_Surface_Mesh_Simplification&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CGAL document&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
     
     </summary>
     
@@ -158,7 +158,7 @@
     <link href="https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/"/>
     <id>https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/</id>
     <published>2017-04-03T19:21:00.000Z</published>
-    <updated>2017-04-03T19:54:44.524Z</updated>
+    <updated>2017-04-03T19:54:44.525Z</updated>
     
     <content type="html"><![CDATA[<p>Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each version is 10 times faster than the raw loop. What?</p>
 <a id="more"></a>
@@ -197,7 +197,7 @@
     <link href="https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/"/>
     <id>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</id>
     <published>2017-02-22T18:30:37.000Z</published>
-    <updated>2017-02-22T13:17:01.077Z</updated>
+    <updated>2017-02-22T13:17:01.078Z</updated>
     
     <content type="html"><![CDATA[<p>RunTime Type Information or RunTime Type Identification, or just RTTI, is a useful feature in C++ language. As its name suggests, this facility gives you the ability to query type information at runtime.</p>
 <ul>
@@ -245,7 +245,7 @@
     <link href="https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/"/>
     <id>https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/</id>
     <published>2017-01-05T00:00:00.000Z</published>
-    <updated>2017-01-05T08:35:19.601Z</updated>
+    <updated>2017-01-05T08:35:19.602Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This post is about a paper published in ICCV2015, called <a href="http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Su_Multi-View_Convolutional_Neural_ICCV_2015_paper.pdf" target="_blank" rel="external">“Multi-view Convolutional Neural Networks for 3D Shape Recognition”</a>. It describes a method to classify 3d shape models using 2d image classification networks. While the authors have open-sourced their matlab implementation on <a href="https://github.com/suhangpro/mvcnn" target="_blank" rel="external">GitHub</a>, here I’ll try to implement this network with Caffe.</p>
 <p>In the first half of this two-part blog, I’ll quickly explain the core idea of this paper. After that I’ll try to implement a naive version of this network. While in part II I’ll go through the details on implementing MVCNN as the paper describes.</p>
@@ -275,9 +275,9 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;This post is about a paper published in ICCV2015, called &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Su_Multi-View_Convolutional_Neural_ICCV_2015_paper.pdf&quot;&gt;“Multi-view Convolutional Neural Networks for 3D Shape Recognition”&lt;/a&gt;. It describes a method to classify 3d shape models using 2d image classification networks. While the authors have open-sourced their matlab implementation on &lt;a href=&quot;https://github.com/suhangpro/mvcnn&quot;&gt;GitHub&lt;/a&gt;, here I’ll try to implement this network with Caffe.&lt;/p&gt;
+      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;This post is about a paper published in ICCV2015, called &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Su_Multi-View_Convolutional_Neural_ICCV_2015_paper.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;“Multi-view Convolutional Neural Networks for 3D Shape Recognition”&lt;/a&gt;. It describes a method to classify 3d shape models using 2d image classification networks. While the authors have open-sourced their matlab implementation on &lt;a href=&quot;https://github.com/suhangpro/mvcnn&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;, here I’ll try to implement this network with Caffe.&lt;/p&gt;
 &lt;p&gt;In the first half of this two-part blog, I’ll quickly explain the core idea of this paper. After that I’ll try to implement a naive version of this network. While in part II I’ll go through the details on implementing MVCNN as the paper describes.&lt;/p&gt;
-&lt;p&gt;The complete codes and scripts in this blog can be found at my &lt;a href=&quot;https://github.com/unclejimbo/mvcnn-caffe&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The complete codes and scripts in this blog can be found at my &lt;a href=&quot;https://github.com/unclejimbo/mvcnn-caffe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://camo.githubusercontent.com/f505454fa4d971db8b85b35ad7cac63795d3eaa0/687474703a2f2f7669732d7777772e63732e756d6173732e6564752f6d76636e6e2f696d616765732f6d76636e6e2e706e67&quot; alt=&quot;&quot;&gt;&lt;br&gt;(&lt;em&gt;The network architecture of MVCNN&lt;/em&gt;)&lt;/p&gt;
     
     </summary>

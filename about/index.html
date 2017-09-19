@@ -1,20 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next pisces" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
 
 
 
@@ -34,41 +42,15 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="unclejimbo's site" />
+  <meta name="keywords" content="unclejimbo" />
 
 
 
@@ -79,26 +61,24 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="WelcomeMy name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics.
-LicenseUnless otherwise stated, articles on th">
+<meta name="description" content="WelcomeMy name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics. LicenseUnless otherwise stated, articles on th">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About Me">
 <meta property="og:url" content="https://unclejimbo.github.io/about/index.html">
-<meta property="og:site_name" content="unclejimbo's site">
-<meta property="og:description" content="WelcomeMy name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics.
-LicenseUnless otherwise stated, articles on th">
+<meta property="og:site_name" content="unclejimbo&#39;s site">
+<meta property="og:description" content="WelcomeMy name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics. LicenseUnless otherwise stated, articles on th">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2016-12-15T10:30:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About Me">
-<meta name="twitter:description" content="WelcomeMy name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics.
-LicenseUnless otherwise stated, articles on th">
+<meta name="twitter:description" content="WelcomeMy name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics. LicenseUnless otherwise stated, articles on th">
 
 
 
@@ -107,9 +87,10 @@ LicenseUnless otherwise stated, articles on th">
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"right","display":"post"},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: ,
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -132,25 +113,17 @@ LicenseUnless otherwise stated, articles on th">
 
 
 
-  <title>
-  
-
-  
-    About Me | unclejimbo's site
-  
-</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
+  <title>About Me | unclejimbo's site</title>
   
 
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+
+
+<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-97325233-1', 'auto');
   ga('send', 'pageview');
 </script>
@@ -164,7 +137,7 @@ LicenseUnless otherwise stated, articles on th">
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -172,35 +145,45 @@ LicenseUnless otherwise stated, articles on th">
 
 
 
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">unclejimbo's site</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">unclejimbo's site</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -211,59 +194,59 @@ LicenseUnless otherwise stated, articles on th">
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/ || home" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             Home
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+          <a href="/about || user" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             About
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags || tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             Tags
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories || th" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives || archive" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml || sitemap" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             Sitemap
           </a>
@@ -289,21 +272,37 @@ LicenseUnless otherwise stated, articles on th">
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">About Me</h2>
+	<h1 class="post-title" itemprop="name headline">About Me</h1>
 
 
 
 </header>
 
-    
-    
-      <h1 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h1><p>My name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics.</p>
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h1><p>My name is Shaodong Wang (王少东). I’m currently a PhD candidate in Institute of Software, Chinese Academy of Sciences, working on computer graphics.</p>
 <h1 id="License"><a href="#License" class="headerlink" title="License"></a>License</h1><p>Unless otherwise stated, articles on this site are licensed under the cc-by license.</p>
 <h1 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h1><p>Email: <a href="wangsd@ios.ac.cn">wangsd@ios.ac.cn</a></p>
 <p>GitHub: <a href="https://www.github.com/unclejimbo" target="_blank" rel="external">unclejimbo</a></p>
 
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
     
   </div>
 
@@ -318,7 +317,7 @@ LicenseUnless otherwise stated, articles on th">
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     
@@ -338,31 +337,48 @@ LicenseUnless otherwise stated, articles on th">
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/me.png"
-               alt="unclejimbo (王少东)" />
-          <p class="site-author-name" itemprop="name">unclejimbo (王少东)</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+               alt="unclejimbo" />
+          <p class="site-author-name" itemprop="name">unclejimbo</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives || archive">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">categories</span>
               </a>
@@ -370,8 +386,10 @@ LicenseUnless otherwise stated, articles on th">
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">tags</span>
               </a>
@@ -393,11 +411,24 @@ LicenseUnless otherwise stated, articles on th">
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/unclejimbo" target="_blank" title="GitHub">
+                <a href="https://github.com/unclejimbo || github" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-fw fa-github"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
-                  GitHub
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wangsd@ios.ac.cn || envelope" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-Mail
+                    
                 </a>
               </span>
             
@@ -423,7 +454,7 @@ LicenseUnless otherwise stated, articles on th">
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://blog.csdn.net/pipisorry" title="pipi-blog" target="_blank">pipi-blog</a>
+                  <a href="http:/blog.csdn.net/pipisorry" title="pipi-blog" target="_blank">pipi-blog</a>
                 </li>
               
             </ul>
@@ -434,6 +465,24 @@ LicenseUnless otherwise stated, articles on th">
 
 
       </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Welcome"><span class="nav-number">1.</span> <span class="nav-text">Welcome</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#License"><span class="nav-number">2.</span> <span class="nav-text">License</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Contact"><span class="nav-number">3.</span> <span class="nav-text">Contact</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -454,7 +503,7 @@ LicenseUnless otherwise stated, articles on th">
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">unclejimbo (王少东)</span>
+  <span class="author" itemprop="copyrightHolder">unclejimbo</span>
 </div>
 
 
@@ -476,9 +525,13 @@ LicenseUnless otherwise stated, articles on th">
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -498,6 +551,15 @@ LicenseUnless otherwise stated, articles on th">
 
 
   
+
+
+
+
+
+
+
+
+
 
 
 
@@ -523,62 +585,78 @@ LicenseUnless otherwise stated, articles on th">
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
-
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
 
-
-
-  
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
 
 
 
   
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-    <script type="text/javascript">
-      var disqus_shortname = 'unclejimbos';
-      var disqus_identifier = 'about/index.html';
+  
 
-      var disqus_title = "About Me";
+  
 
 
-      function run_disqus_script(disqus_script) {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
-      
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://unclejimbos.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
         var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
+          this.page.url = 'https://unclejimbo.github.io/about/index.html';
+          this.page.identifier = 'about/index.html';
+          this.page.title = 'About Me';
         };
-        run_disqus_script('embed.js');
-      
+        var d = document, s = d.createElement('script');
+        s.src = 'https://unclejimbos.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
 
-    </script>
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
   
 
 
@@ -586,6 +664,116 @@ LicenseUnless otherwise stated, articles on th">
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("JVGcFwDqMgSaNGKdFXnKQLH5-gzGzoHsz", "Vc3vhEn4KvHJX7OTHMpugy14");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
   
 
   
@@ -608,7 +796,7 @@ LicenseUnless otherwise stated, articles on th">
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -632,9 +820,6 @@ LicenseUnless otherwise stated, articles on th">
   
 
   
-
-  
-
 
 </body>
 </html>

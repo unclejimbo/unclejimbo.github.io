@@ -1,20 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 
 
 
+  
 
-<html class="theme-next pisces" lang="en">
+
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
 
 
 
@@ -42,12 +37,38 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="unclejimbo" />
@@ -61,7 +82,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -83,10 +104,9 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    tabs: true,
-    motion: ,
+    motion: true,
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -109,13 +129,17 @@
 
 
 
-  <title>unclejimbo's site</title>
+  <title> unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
   
 
 
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -133,7 +157,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
 
 
@@ -143,17 +167,13 @@
 
 
 
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right 
+  <div class="container sidebar-position-right 
    page-home 
  ">
     <div class="headband"></div>
@@ -192,59 +212,59 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/ || home" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about || user" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags || tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-categories">
-          <a href="/categories || th" rel="section">
+          <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives || archive" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml || sitemap" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
             
             Sitemap
           </a>
@@ -278,11 +298,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,8 +317,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/" itemprop="url">Some Notes on OpenGL Vertex Specification</a></h1>
+                <a class="post-title-link" href="/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/" itemprop="url">
+                  Some Notes on OpenGL Vertex Specification
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -387,9 +411,7 @@
       </header>
     
 
-    
-    
-    
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -416,15 +438,18 @@
         
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -438,10 +463,6 @@
         <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -454,11 +475,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/06/14/Mesh-Processing-with-CGAL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -477,8 +494,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/06/14/Mesh-Processing-with-CGAL/" itemprop="url">Mesh Processing with CGAL</a></h1>
+                <a class="post-title-link" href="/2017/06/14/Mesh-Processing-with-CGAL/" itemprop="url">
+                  Mesh Processing with CGAL
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -563,9 +588,7 @@
       </header>
     
 
-    
-    
-    
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -585,15 +608,18 @@
         
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -607,10 +633,6 @@
         <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -623,11 +645,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -646,8 +664,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/04/03/Looping-Performance-in-C++/" itemprop="url">Looping Performance in C++</a></h1>
+                <a class="post-title-link" href="/2017/04/03/Looping-Performance-in-C++/" itemprop="url">
+                  Looping Performance in C++
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -732,9 +758,7 @@
       </header>
     
 
-    
-    
-    
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -753,15 +777,18 @@
         
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -775,10 +802,6 @@
         <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -791,11 +814,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,8 +833,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/02/22/RTTI-in-C++/" itemprop="url">RTTI in C++</a></h1>
+                <a class="post-title-link" href="/2017/02/22/RTTI-in-C++/" itemprop="url">
+                  RTTI in C++
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -900,9 +927,7 @@
       </header>
     
 
-    
-    
-    
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -926,15 +951,18 @@
         
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -948,10 +976,6 @@
         <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -964,11 +988,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -987,8 +1007,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/" itemprop="url">Implementing MVCNN with Caffe, Part I</a></h1>
+                <a class="post-title-link" href="/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/" itemprop="url">
+                  Implementing MVCNN with Caffe, Part I
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -1073,9 +1101,7 @@
       </header>
     
 
-    
-    
-    
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1097,15 +1123,18 @@
         
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -1119,10 +1148,6 @@
         <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -1135,11 +1160,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1158,8 +1179,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2016/12/15/Uprigt-Summary/" itemprop="url">Upright Orientation Detection Methods</a></h1>
+                <a class="post-title-link" href="/2016/12/15/Uprigt-Summary/" itemprop="url">
+                  Upright Orientation Detection Methods
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -1244,9 +1273,7 @@
       </header>
     
 
-    
-    
-    
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1267,15 +1294,18 @@
         
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
-    
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -1289,10 +1319,6 @@
         <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -1321,7 +1347,6 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -1342,7 +1367,7 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives || archive">
+              <a href="/archives">
                 <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">posts</span>
               </a>
@@ -1384,47 +1409,17 @@
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/unclejimbo || github" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:wangsd@ios.ac.cn || envelope" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                    
-                      E-Mail
-                    
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="https://creativecommons.org/licenses/by/4.0/" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
 
         
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
               <i class="fa  fa-fw fa-globe"></i>
-              Friends
+              
             </div>
             <ul class="links-of-blogroll-list">
               
@@ -1516,12 +1511,6 @@
 
 
 
-
-
-
-
-
-
   
   <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
@@ -1544,32 +1533,28 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -1601,6 +1586,16 @@
 
 
 
+  
+
+
+
+
+
+  
+
+
+
 
 
 
@@ -1613,7 +1608,7 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
   <script>AV.initialize("JVGcFwDqMgSaNGKdFXnKQLH5-gzGzoHsz", "Vc3vhEn4KvHJX7OTHMpugy14");</script>
   <script>
     function showTime(Counter) {
@@ -1722,8 +1717,6 @@
   
 
   
-
-  
   
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
@@ -1763,8 +1756,6 @@
 <!-- hexo-inject:end -->
   
 
-
-  
 
   
 

@@ -2,28 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/</loc>
+    
+    <lastmod>2018-06-07T18:14:03.671Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/</loc>
-    
-    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/</loc>
-    
-    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</loc>
-    
-    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/</loc>
     
     <lastmod>2018-06-07T18:04:32.006Z</lastmod>
     
@@ -37,7 +23,14 @@
   </url>
   
   <url>
-    <loc>https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/</loc>
+    <loc>https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/</loc>
+    
+    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</loc>
     
     <lastmod>2018-06-07T18:04:32.006Z</lastmod>
     
@@ -45,6 +38,13 @@
   
   <url>
     <loc>https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/</loc>
+    
+    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/</loc>
     
     <lastmod>2018-06-07T18:04:32.006Z</lastmod>
     

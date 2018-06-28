@@ -1,5 +1,5 @@
 ---
-title: Moden CMake for Library Developers
+title: Modern CMake for Library Developers
 tags:
   - C++
   - CMake
@@ -38,17 +38,15 @@ Now suppose we are building a library `yart`, and the project is structured like
     - CMakeLists.txt
 ```
 
-Let's start with the parent level `CMakeLists.txt`. Nothing interesting here, I'd like to use C++17 so CMake 3.10 is required.
+Let's start with the parent level `CMakeLists.txt`. Nothing interesting here, I'd like to use C++17 so CMake 3.10 is required. The `project` command will create a `YART` project as well as versioning variables including `YART_VERSION`, `YART_VERSION_MAJOR`, `YART_VERSION_MINOR` and `YART_VERSION_PATCH`.
 
 ```cmake
 cmake_minimum_required(VERSION 3.10)
 
-project(libyart LANGUAGES CXX)
-
-set(YART_VERSION_MAJOR 0)
-set(YART_VERSION_MINOR 1)
-set(YART_VERSION_PATCH 0)
-set(YART_VERSION ${YART_VERSION_MAJOR}.${YART_VERSION_MINOR}.${YART_VERSION_PATCH})
+project(YART
+    LANGUAGES CXX
+    VERSION 0.1.0
+)
 
 add_subdirectory(src)
 add_subdirectory(examples)
@@ -83,32 +81,62 @@ We would like the users to choose whether to build a shared library or a static 
 
 ```cmake
 option(BUILD_SHARED_LIBS "Build shared library" ON)
-target_compile_definitions(yart PUBLIC
-    $<$<BOOL:${BUILD_SHARED_LIBS}>:YART_EXPORTS>
+include(GenerateExportHeader)
+generate_export_header(yart
+    EXPORT_MACRO_NAME YART_API
+    EXPORT_FILE_NAME ${CMAKE_BINARY_DIR}/include/yart/core/common.h
 )
 ```
 
 There're a lot of interesting thing going on here. In the first command, `BUILD_SHARED_LIBS` is read by CMake to switch between static and shared library, and a user could alter this option in cache.
 
-Well, the second command basically says that we'd like to add a definition `YART_EXPORTS` in the compiler command options if the user set `BUILD_SHARED_LIBS` to `ON`. The pattern `$<:>` you see here is [generator-expressions](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html) which works just like `if` statement but could be compactly inserted into other cmake commands like this `target_compile_definitions` command. Notice the `PUBLIC` keyword here, it says that this definition is a public property of `yart`.
+Well, the `generate_export_header` command creates a header file which helps switch between building shared and static libraries. And here is the generated `common.h` file with msvc, and you should use these macros to export your library symbols like `void YART_API my_api_fcn();`
 
-> The reason why we add this definition is mainly because the MSVC compiler expects this definition when working with dll libraries,
-> ```cpp
-#if defined(_MSC_VER) && !defined(YART_STATIC_LIB)
-    #ifdef YART_EXPORTS
-        #define YART_API __declspec(dllexport)
-    #else
-        #define YART_API __declspec(dllimport)
-    #endif
+```cpp
+#ifndef YART_API_H
+#define YART_API_H
+
+#ifdef YART_STATIC_DEFINE
+#  define YART_API
+#  define YART_NO_EXPORT
 #else
-        #define YART_API
+#  ifndef YART_API
+#    ifdef yart_EXPORTS
+        /* We are building this library */
+#      define YART_API __declspec(dllexport)
+#    else
+        /* We are using this library */
+#      define YART_API __declspec(dllimport)
+#    endif
+#  endif
+
+#  ifndef YART_NO_EXPORT
+#    define YART_NO_EXPORT
+#  endif
 #endif
+
+#ifndef YART_DEPRECATED
+#  define YART_DEPRECATED __declspec(deprecated)
+#endif
+
+#ifndef YART_DEPRECATED_EXPORT
+#  define YART_DEPRECATED_EXPORT YART_API YART_DEPRECATED
+#endif
+
+#ifndef YART_DEPRECATED_NO_EXPORT
+#  define YART_DEPRECATED_NO_EXPORT YART_NO_EXPORT YART_DEPRECATED
+#endif
+
+#if 0 /* DEFINE_NO_DEPRECATED */
+#  ifndef YART_NO_DEPRECATED
+#    define YART_NO_DEPRECATED
+#  endif
+#endif
+
+#endif /* YART_API_H */
 ```
-> And as library developers we need to export the api symbols like,
-> ```cpp
-void YART_API a_yart_fnc();
-```
-> But that's enough about dll for now.
+
+The pattern `$<:>` you see earlier is [generator-expressions](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html) which works just like `if` statement but could be compactly inserted into other cmake commands like this `target_compile_definitions` command. Notice the `PUBLIC` keyword here, it says that this definition is a public property of `yart`.
 
 And now, we'd like to configure the compiler options,
 
@@ -129,13 +157,14 @@ With `target_compile_features`, you could directly demand a language standard ve
 target_include_directories(yart
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>
         $<INSTALL_INTERFACE:include>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 ```
 
-The `target_include_directories` command set up the include directories of `yart`. Public api is located in `$<CMAKE_SOURCE_DIR>/include/`, and the private header file is in the same directory as `$<CMAKE_CURRENT_SOURCE_DIR>`. Notice that `$<INSTALL_INTERFACE:include>` is needed for users to find `yart` headers after installing `yart` onto their system. The `include` directory is a relative path to `${CMAKE_INSTALL_PREFIX}` which is often `/usr/local` on Linux and `C:\Program Files` on Windows.
+The `target_include_directories` command set up the include directories of `yart`. Public api is located in `$<CMAKE_SOURCE_DIR>/include/`, as well as the generated `common.h` file, and the private header file is in the same directory as `$<CMAKE_CURRENT_SOURCE_DIR>`. Notice that `$<INSTALL_INTERFACE:include>` is needed for users to find `yart` headers after installing `yart` onto their system. The `include` directory is a relative path to `${CMAKE_INSTALL_PREFIX}` which is often `/usr/local` on Linux and `C:\Program Files` on Windows.
 
 And we would also like to organize the build tree a bit and configure where to output generated binaries,
 
@@ -202,7 +231,7 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/yart
 install(EXPORT yart-targets
     FILE yart-targets.cmake
     NAMESPACE yart::
-    DESTINATION ${INSTALL_CONFIGDIR}
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/yart
 )
 ```
 
@@ -225,7 +254,7 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(
     ${CMAKE_SOURCE_DIR}/cmake/yart-config.cmake.in
     ${CMAKE_BINARY_DIR}/cmake/yart-config.cmake
-    INSTALL_DESTINATION ${INSTALL_CONFIGDIR}
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/yart
 )
 
 write_basic_package_version_file(
@@ -238,7 +267,7 @@ install(
     FILES
         ${CMAKE_BINARY_DIR}/cmake/yart-config.cmake
         ${CMAKE_BINARY_DIR}/cmake/yart-config-version.cmake
-    DESTINATION ${INSTALL_CONFIGDIR}
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/yart
 )
 ```
 
@@ -257,7 +286,7 @@ endif()
 
 Quite simple right? You need to call `@PACKAGE_INIT@` first, find dependencies and finally include the generated `yart-targets.cmake` file.
 
-A version file is also preferred by users and could be created easily with `write_basic_package_version_file`. Notice that these files are generated in your build tree (`${CMAKE_BINARY_DIR}`) and you need to install them into your system.
+A version file is also preferred by users and could be created easily with `write_basic_package_version_file`. Notice that these files are generated in your build tree (`${CMAKE_BINARY_DIR}`) and you need to install them into your system. The install directory is `${CMAKE_INSTALL_LIBDIR}/cmake/yart` which is the default search directory of `find_package`.
 
 One last step, remember that we also have another `example` alongside this library? We need to call the `export` command,
 
@@ -270,7 +299,7 @@ export(EXPORT yart-targets
 
 So that `example` could refer to `yart` without finding the package.
 
-# Use the yart
+# Use the Target
 
 `example/CMakeLists.txt` couldn't be more simple,
 

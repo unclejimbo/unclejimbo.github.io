@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/</loc>
+    
+    <lastmod>2018-08-21T16:33:04.546Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/</loc>
     
     <lastmod>2018-06-28T03:40:52.877Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/</loc>
+    
+    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/</loc>
+    
+    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/06/14/Mesh-Processing-with-CGAL/</loc>
+    
+    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
     
   </url>
   
@@ -24,27 +52,6 @@
   
   <url>
     <loc>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</loc>
-    
-    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://unclejimbo.github.io/2017/06/14/Mesh-Processing-with-CGAL/</loc>
-    
-    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/</loc>
-    
-    <lastmod>2018-06-07T18:04:32.006Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/</loc>
     
     <lastmod>2018-06-07T18:04:32.006Z</lastmod>
     

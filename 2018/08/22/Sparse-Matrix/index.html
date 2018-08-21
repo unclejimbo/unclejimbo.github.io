@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Computer Graphics,OpenGL," />
+  <meta name="keywords" content="Eigen,Computer Graphics,Geometry Processing,Libigl," />
 
 
 
@@ -63,18 +63,18 @@
 
 
 
-<meta name="description" content="The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the verte">
-<meta name="keywords" content="Computer Graphics,OpenGL">
+<meta name="description" content="Here I’ve compiled a list of functions to manipulate Eigen::SparseMatrix in Libigl, due to the lack of documentation. Up-to-date with commit 1f5a0c1.">
+<meta name="keywords" content="Eigen,Computer Graphics,Geometry Processing,Libigl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Some Notes on OpenGL Vertex Specification">
-<meta property="og:url" content="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/index.html">
+<meta property="og:title" content="Sparse Matrix Manipulation in Libigl">
+<meta property="og:url" content="https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/index.html">
 <meta property="og:site_name" content="unclejimbo&#39;s site">
-<meta property="og:description" content="The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the verte">
+<meta property="og:description" content="Here I’ve compiled a list of functions to manipulate Eigen::SparseMatrix in Libigl, due to the lack of documentation. Up-to-date with commit 1f5a0c1.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-07T18:04:32.006Z">
+<meta property="og:updated_time" content="2018-08-21T16:33:04.546Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Some Notes on OpenGL Vertex Specification">
-<meta name="twitter:description" content="The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the verte">
+<meta name="twitter:title" content="Sparse Matrix Manipulation in Libigl">
+<meta name="twitter:description" content="Here I’ve compiled a list of functions to manipulate Eigen::SparseMatrix in Libigl, due to the lack of documentation. Up-to-date with commit 1f5a0c1.">
 
 
 
@@ -102,13 +102,13 @@
 
 
 
-  <link rel="canonical" href="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/"/>
+  <link rel="canonical" href="https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/"/>
 
 
 
 
 
-  <title> Some Notes on OpenGL Vertex Specification | unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Sparse Matrix Manipulation in Libigl | unclejimbo's site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -276,7 +276,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/">
+    <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="unclejimbo">
@@ -297,7 +297,7 @@
             
             
               
-                Some Notes on OpenGL Vertex Specification
+                Sparse Matrix Manipulation in Libigl
               
             
           </h1>
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-13T11:34:09+08:00">
-                2017-08-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T00:18:05+08:00">
+                2018-08-22
               </time>
             
 
@@ -353,9 +353,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/22/Sparse-Matrix/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/22/Sparse-Matrix/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -363,7 +363,7 @@
 
           
           
-             <span id="/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/" class="leancloud_visitors" data-flag-title="Some Notes on OpenGL Vertex Specification">
+             <span id="/2018/08/22/Sparse-Matrix/" class="leancloud_visitors" data-flag-title="Sparse Matrix Manipulation in Libigl">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,50 +392,39 @@
       
 
       
-        <p>The idea of vertex specification is pretty simple, after you submit data to OpenGL, you need to tell OpenGL how to interpret those data. But I’m always quite confused by the names related to the vertex specification thing, for example,</p>
-<ul>
-<li>Vertex Array Object</li>
-<li>Vertex Buffer Object</li>
-<li><code>GL_VERTEX_ARRAY_BUFFER</code></li>
-<li><code>glVertexAttribPointer</code></li>
-<li><code>glEnableVertexAttribArray</code></li>
-</ul>
-<p>What’s the fuss about those funny names? It really needs more conceptual explanations before those words could make any sense.</p>
+        <p>Here I’ve compiled a list of functions to manipulate <code>Eigen::SparseMatrix</code> in <a href="https://github.com/libigl/libigl" target="_blank" rel="noopener">Libigl</a>, due to the lack of documentation.</p>
+<p>Up-to-date with commit <a href="https://github.com/libigl/libigl/commit/1f5a0c100a70ae487f673e3a76110cad4fb983d3" target="_blank" rel="noopener">1f5a0c1</a>.</p>
 <a id="more"></a>
-<h1 id="Vertex-Attribute"><a href="#Vertex-Attribute" class="headerlink" title="Vertex Attribute"></a>Vertex Attribute</h1><p>Suppose you need vertex positions and vertex normals to correctly render an image. Thus your vertex shader might look something like</p>
-<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">layout</span> <span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> position;</span><br><span class="line">(<span class="keyword">layout</span> <span class="keyword">location</span> = <span class="number">1</span>) <span class="keyword">in</span> <span class="type">vec3</span> normal;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The vertex position and vertex normal are called <strong>vertex attributes</strong>, which OpenGL requires as input for your shader to correctly render a result. Actually, in the old days of OpenGL, the input specifier wasn’t <code>in</code> but indeed <code>attribute</code>, so the shader should look like</p>
-<pre><code class="glsl"><span class="keyword">attribute</span> <span class="type">vec3</span> position;
-<span class="keyword">attribute</span> <span class="type">vec3</span> normal;
-
-<span class="type">void</span> main()
-{
-    <span class="comment">//...</span>
-}
-</code></pre>
-<p>Although <code>attribute</code> was deprecated since OpenGL 3.3 (as well as <code>varying</code>), this term still remains in the API, such as <code>glVertexAttribPointer</code> and <code>glEnableVertexAttribArray</code>. Now let’s talk more about them.</p>
-<h2 id="glVertexAttribPointer"><a href="#glVertexAttribPointer" class="headerlink" title="glVertexAttribPointer"></a>glVertexAttribPointer</h2><p>As is often the case, we pack the vertex attribute data into <strong>Vertex Buffer Objects</strong> and stream the data to OpenGL. For the previous shader, there are several common ways to store the data.</p>
-<ul>
-<li>Into separate VBOs<ul>
-<li>VBO1 = P1 P2 P3 …</li>
-<li>VBO2 = N1 N2 N3 …</li>
-</ul>
-</li>
-<li>Concatenated<ul>
-<li>VBO = P1 P2 P3 … N1 N2 N3 …</li>
-</ul>
-</li>
-<li>Interleaved<ul>
-<li>VBO = P1 N1 P2 N2 P3 N3 …</li>
-</ul>
-</li>
-</ul>
-<p>In any case, you need to bind the correct vertex buffer object to the <code>GL_ARRAY_BUFFER</code> binding point and tell OpenGL how to interpret the data using <code>glVertexAttribPointer</code>. It actually works quite like a pointer, moving around the buffer to find the desired value for the specific attribute.</p>
-<h2 id="glEnableVertexAttribArray"><a href="#glEnableVertexAttribArray" class="headerlink" title="glEnableVertexAttribArray"></a>glEnableVertexAttribArray</h2><p>After the specification of one attribute, you need to enable this <strong>vertex attribute array</strong> for the shader to use the data. It’s called this way because the vertex attribute data are indeed stored in an array. But why the hell do I need to enable this array? Because when you don’t, OpenGL let you set a static vertex attribute value at that location using <code>glVertexAttrib*</code>. This is called the <strong>non-array attribute</strong> of OpenGL and is associated to an OpenGL context. Its job is pretty similar to an <code>uniform</code> and you might only want to use static vertex attribute in certain cases for the sake of efficiency. Otherwise, use <code>uniform</code> for attribute that remain constant across vertex and use vertex attribute array for the per-vertex data.</p>
-<h1 id="Vertex-Array-Object"><a href="#Vertex-Array-Object" class="headerlink" title="Vertex Array Object"></a>Vertex Array Object</h1><p>As describted in the previous section, the common work flow before you could draw with a shader is to first use <code>glBindBuffer</code> to bind a VBO to <code>GL_ARRAY_BUFFER</code>, then use <code>glVertexAttribPointer</code> to specify the vertex format and finally use <code>glEnableVertexAtrribArray</code> for this data to be operated. You repeat this procedure for every vertex attribute required by the shader and then you could draw with OpenGL. This seems quite cubersome, so OpenGL let you use a VAO to record those specifications then you don’t need to repeat those procedures whenever you want to draw with the set of data. However, VAO does not record the data in the vbo, so changing the data will cause VAO to update automatically.</p>
-<hr>
-<p>That’s pretty much about it. Still these terms are quite similar to each other yet with different meanings and purposes. Try not to get confused. For more advanced usage of vertex specification, such as instancing, separate attribute format, e.g., please read the wiki page in the reference.</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.khronos.org/opengl/wiki/Vertex_Specification" target="_blank" rel="noopener">https://www.khronos.org/opengl/wiki/Vertex_Specification</a></p>
+<h1 id="Creation"><a href="#Creation" class="headerlink" title="Creation"></a>Creation</h1><h2 id="cat-h"><a href="#cat-h" class="headerlink" title="cat.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/cat.h" target="_blank" rel="noopener">cat.h</a></h2><p>Concatenate two <code>SparseMatrix</code>.</p>
+<h2 id="diag-h"><a href="#diag-h" class="headerlink" title="diag.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/diag.h" target="_blank" rel="noopener">diag.h</a></h2><p>Extract the diagonal entries of a  <code>SparseMatrix</code> into a <code>Vector</code> and vice-versa. This is superceded by</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VectorXd V = X.diagonal() and</span><br><span class="line">SparseVector&lt;<span class="keyword">double</span>&gt; V = X.diagonal().sparseView()</span><br><span class="line">SparseMatrix&lt;<span class="keyword">double</span>&gt; X = V.asDiagonal().sparseView()</span><br></pre></td></tr></table></figure>
+<h2 id="invert-diag-h"><a href="#invert-diag-h" class="headerlink" title="invert_diag.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/invert_diag.h" target="_blank" rel="noopener">invert_diag.h</a></h2><p>Invert the diagonal entries of a <code>SparseMatrix</code>.</p>
+<h2 id="repdiag-h"><a href="#repdiag-h" class="headerlink" title="repdiag.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/repdiag.h" target="_blank" rel="noopener">repdiag.h</a></h2><p>Repeat a <code>SparseMatrix</code> on the diagonal n times to form a new <code>SparseMatrix</code>.</p>
+<h2 id="repmat-h"><a href="#repmat-h" class="headerlink" title="repmat.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/repmat.h" target="_blank" rel="noopener">repmat.h</a></h2><p>Repeat a <code>SparseMatrix</code> along the columns and rows to form a r by c <code>SparseMatrix</code>.</p>
+<h2 id="sparse-h"><a href="#sparse-h" class="headerlink" title="sparse.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/sparse.h" target="_blank" rel="noopener">sparse.h</a></h2><p>Create a <code>SparseMatrix</code> from indices and values. It’s a simple wrapper to the <code>Eigen::SparseMatrix::setFromTriplets</code> method.</p>
+<h2 id="sparse-cached-h"><a href="#sparse-cached-h" class="headerlink" title="sparse_cached.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/sparse_cached.h" target="_blank" rel="noopener">sparse_cached.h</a></h2><p>Faster version of <code>sparse</code> using cached data.</p>
+<h2 id="speye-h"><a href="#speye-h" class="headerlink" title="speye.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/speye.h" target="_blank" rel="noopener">speye.h</a></h2><p>Create a sparse identity matrix.</p>
+<h1 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h1><h2 id="is-sparse-h"><a href="#is-sparse-h" class="headerlink" title="is_sparse.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/is_sparse.h" target="_blank" rel="noopener">is_sparse.h</a></h2><p>Determine if a matrix is <code>SparseMatrx</code>.</p>
+<h2 id="is-symmetric-h"><a href="#is-symmetric-h" class="headerlink" title="is_symmetric.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/is_symmetric.h" target="_blank" rel="noopener">is_symmetric.h</a></h2><p>Determine if a <code>SparseMatrix</code> is symmetric.</p>
+<h2 id="is-diag-h"><a href="#is-diag-h" class="headerlink" title="is_diag.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/is_diag.h" target="_blank" rel="noopener">is_diag.h</a></h2><p>Determine if a <code>SparseMatrix</code> is diagonal.</p>
+<h1 id="Coefficient-wise-Operation"><a href="#Coefficient-wise-Operation" class="headerlink" title="Coefficient-wise Operation"></a>Coefficient-wise Operation</h1><h2 id="for-each"><a href="#for-each" class="headerlink" title="for_each"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/for_each.h" target="_blank" rel="noopener">for_each</a></h2><p>Apply a function for each non-zero element. Could be replaced with <a href="http://eigen.tuxfamily.org/dox/classEigen_1_1SparseMatrixBase.html#af9bed5dea96bdaf17ffd1a76ab0aedb1" target="_blank" rel="noopener"><code>Eigen::SparseMatrix::unaryExpr</code></a>.</p>
+<p>Note that <code>Eigen::SparseMatrix</code> also provides a lot of coefficient-wise operations to use.</p>
+<h1 id="Reduction-and-Visitor"><a href="#Reduction-and-Visitor" class="headerlink" title="Reduction and Visitor"></a>Reduction and Visitor</h1><h2 id="all-h"><a href="#all-h" class="headerlink" title="all.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/all.h" target="_blank" rel="noopener">all.h</a></h2><p>Return true if all coefficients in a row/column of a <code>SparseMatrix</code> are true.</p>
+<h2 id="any-h"><a href="#any-h" class="headerlink" title="any.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/any.h" target="_blank" rel="noopener">any.h</a></h2><p>Return true if any coefficient in a row/column of a <code>SparseMatrix</code> is true.</p>
+<h2 id="count-h"><a href="#count-h" class="headerlink" title="count.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/count.h" target="_blank" rel="noopener">count.h</a></h2><p>Return the number of coefficients that are true in each row/column in a given <code>SparseMatrix</code>.</p>
+<h2 id="find-h"><a href="#find-h" class="headerlink" title="find.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/find.h" target="_blank" rel="noopener">find.h</a></h2><p>Get the values and indices of non-zero elements in a <code>SparseMatrix</code>. It’s a convinient wrapper to:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SparseMatrix&lt;<span class="keyword">double</span>&gt; mat(rows,cols);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;mat.outerSize(); ++k)</span><br><span class="line">  <span class="keyword">for</span> (SparseMatrix&lt;<span class="keyword">double</span>&gt;::InnerIterator it(mat,k); it; ++it)</span><br><span class="line">  &#123;</span><br><span class="line">    it.value();</span><br><span class="line">    it.row();   <span class="comment">// row index</span></span><br><span class="line">    it.col();   <span class="comment">// col index (here it is equal to k)</span></span><br><span class="line">    it.index(); <span class="comment">// inner index, here it is equal to it.row()</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="find-zero-h"><a href="#find-zero-h" class="headerlink" title="find_zero.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/find_zero.h" target="_blank" rel="noopener">find_zero.h</a></h2><p>Return the first zero rows/columns of a <code>SparseMatrix</code>.</p>
+<h2 id="max-h"><a href="#max-h" class="headerlink" title="max.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/max.h" target="_blank" rel="noopener">max.h</a></h2><p>Return the values and indices of the maximum elements of each row/column in a <code>SparseMatrix</code>.</p>
+<h2 id="min-h"><a href="#min-h" class="headerlink" title="min.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/min.h" target="_blank" rel="noopener">min.h</a></h2><p>Return the values and indices of the minimum elements of each row/column in a <code>SparseMatrix</code>.</p>
+<h2 id="redux-h"><a href="#redux-h" class="headerlink" title="redux.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/redux.h" target="_blank" rel="noopener">redux.h</a></h2><p>Run a function to reduce the <code>SparseMatrix</code> colwise/rowwise.</p>
+<h2 id="sum-h"><a href="#sum-h" class="headerlink" title="sum.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/sum.h" target="_blank" rel="noopener">sum.h</a></h2><p>Return the colwise/rowwise sum of a <code>SparseMatrix</code>.</p>
+<h1 id="Slicing"><a href="#Slicing" class="headerlink" title="Slicing"></a>Slicing</h1><h2 id="slice-h"><a href="#slice-h" class="headerlink" title="slice.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/slice.h" target="_blank" rel="noopener">slice.h</a></h2><p>Slice a <code>SparseMatrix</code> into a sub-matrix.</p>
+<h2 id="slice-cached-h"><a href="#slice-cached-h" class="headerlink" title="slice_cached.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/slice_cached.h" target="_blank" rel="noopener">slice_cached.h</a></h2><p>Faster version of <code>slice</code> using cached data.</p>
+<h2 id="slice-into-h"><a href="#slice-into-h" class="headerlink" title="slice_into.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/slice_into.h" target="_blank" rel="noopener">slice_into.h</a></h2><p>Copy a <code>SparseMatrix</code> into a slice of another one.</p>
+<h2 id="slice-mask-h"><a href="#slice-mask-h" class="headerlink" title="slice_mask.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/slice_mask.h" target="_blank" rel="noopener">slice_mask.h</a></h2><p>Slice using mask instead of indices.</p>
+<h1 id="Decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h1><h2 id="eigs-h"><a href="#eigs-h" class="headerlink" title="eigs.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/eigs.h" target="_blank" rel="noopener">eigs.h</a></h2><p>Eigen value decomposition. See <a href="https://spectralib.org/" target="_blank" rel="noopener">Spectra</a> for a more sophisticated solution.</p>
+<h1 id="Other-Utilities"><a href="#Other-Utilities" class="headerlink" title="Other Utilities"></a>Other Utilities</h1><h2 id="print-ijv-h"><a href="#print-ijv-h" class="headerlink" title="print_ijv.h"></a><a href="https://github.com/libigl/libigl/blob/master/include/igl/print_ijv.h" target="_blank" rel="noopener">print_ijv.h</a></h2><p>Print the indices and values of non-zero entries.</p>
 
       
     </div>
@@ -465,9 +454,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Eigen/" rel="tag"># Eigen</a>
+          
             <a href="/tags/Computer-Graphics/" rel="tag"># Computer Graphics</a>
           
-            <a href="/tags/OpenGL/" rel="tag"># OpenGL</a>
+            <a href="/tags/Geometry-Processing/" rel="tag"># Geometry Processing</a>
+          
+            <a href="/tags/Libigl/" rel="tag"># Libigl</a>
           
         </div>
       
@@ -480,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/14/Mesh-Processing-with-CGAL/" rel="next" title="Mesh Processing with CGAL">
-                <i class="fa fa-chevron-left"></i> Mesh Processing with CGAL
+              <a href="/2018/06/08/Modern-CMake-for-Library-Developers/" rel="next" title="Modern CMake for Library Developers">
+                <i class="fa fa-chevron-left"></i> Modern CMake for Library Developers
               </a>
             
           </div>
@@ -489,10 +482,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/08/Modern-CMake-for-Library-Developers/" rel="prev" title="Modern CMake for Library Developers">
-                Modern CMake for Library Developers <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -675,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vertex-Attribute"><span class="nav-number">1.</span> <span class="nav-text">Vertex Attribute</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#glVertexAttribPointer"><span class="nav-number">1.1.</span> <span class="nav-text">glVertexAttribPointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#glEnableVertexAttribArray"><span class="nav-number">1.2.</span> <span class="nav-text">glEnableVertexAttribArray</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vertex-Array-Object"><span class="nav-number">2.</span> <span class="nav-text">Vertex Array Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Creation"><span class="nav-number">1.</span> <span class="nav-text">Creation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat-h"><span class="nav-number">1.1.</span> <span class="nav-text">cat.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diag-h"><span class="nav-number">1.2.</span> <span class="nav-text">diag.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invert-diag-h"><span class="nav-number">1.3.</span> <span class="nav-text">invert_diag.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repdiag-h"><span class="nav-number">1.4.</span> <span class="nav-text">repdiag.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repmat-h"><span class="nav-number">1.5.</span> <span class="nav-text">repmat.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sparse-h"><span class="nav-number">1.6.</span> <span class="nav-text">sparse.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sparse-cached-h"><span class="nav-number">1.7.</span> <span class="nav-text">sparse_cached.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#speye-h"><span class="nav-number">1.8.</span> <span class="nav-text">speye.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Predicate"><span class="nav-number">2.</span> <span class="nav-text">Predicate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#is-sparse-h"><span class="nav-number">2.1.</span> <span class="nav-text">is_sparse.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#is-symmetric-h"><span class="nav-number">2.2.</span> <span class="nav-text">is_symmetric.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#is-diag-h"><span class="nav-number">2.3.</span> <span class="nav-text">is_diag.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Coefficient-wise-Operation"><span class="nav-number">3.</span> <span class="nav-text">Coefficient-wise Operation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for-each"><span class="nav-number">3.1.</span> <span class="nav-text">for_each</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reduction-and-Visitor"><span class="nav-number">4.</span> <span class="nav-text">Reduction and Visitor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#all-h"><span class="nav-number">4.1.</span> <span class="nav-text">all.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#any-h"><span class="nav-number">4.2.</span> <span class="nav-text">any.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count-h"><span class="nav-number">4.3.</span> <span class="nav-text">count.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-h"><span class="nav-number">4.4.</span> <span class="nav-text">find.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-zero-h"><span class="nav-number">4.5.</span> <span class="nav-text">find_zero.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#max-h"><span class="nav-number">4.6.</span> <span class="nav-text">max.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#min-h"><span class="nav-number">4.7.</span> <span class="nav-text">min.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redux-h"><span class="nav-number">4.8.</span> <span class="nav-text">redux.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sum-h"><span class="nav-number">4.9.</span> <span class="nav-text">sum.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Slicing"><span class="nav-number">5.</span> <span class="nav-text">Slicing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-h"><span class="nav-number">5.1.</span> <span class="nav-text">slice.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-cached-h"><span class="nav-number">5.2.</span> <span class="nav-text">slice_cached.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-into-h"><span class="nav-number">5.3.</span> <span class="nav-text">slice_into.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-mask-h"><span class="nav-number">5.4.</span> <span class="nav-text">slice_mask.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decomposition"><span class="nav-number">6.</span> <span class="nav-text">Decomposition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eigs-h"><span class="nav-number">6.1.</span> <span class="nav-text">eigs.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Other-Utilities"><span class="nav-number">7.</span> <span class="nav-text">Other Utilities</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#print-ijv-h"><span class="nav-number">7.1.</span> <span class="nav-text">print_ijv.h</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -819,9 +808,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/';
-          this.page.identifier = '2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/';
-          this.page.title = 'Some Notes on OpenGL Vertex Specification';
+          this.page.url = 'https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/';
+          this.page.identifier = '2018/08/22/Sparse-Matrix/';
+          this.page.title = 'Sparse Matrix Manipulation in Libigl';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://unclejimbos.disqus.com/embed.js';

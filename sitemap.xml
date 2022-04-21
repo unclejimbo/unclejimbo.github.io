@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://unclejimbo.github.io/publications/index.html</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/about/index.html</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2016/12/15/Uprigt-Summary/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/01/05/2017-1-5-Implementing-MVCNN-with-Caffe-Part-I/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/02/22/RTTI-in-C++/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/04/03/Looping-Performance-in-C++/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/06/14/Mesh-Processing-with-CGAL/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2017/08/13/Some-Notes-on-OpenGL-Vertex-Specification/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/categories/index.html</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/index.html</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://unclejimbo.github.io/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/C/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/Eigen/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/Computer-Graphics/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/Research-Log/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/OpenGL/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/CMake/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/Computer-Vision/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/Deep-Learning/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/Geometry-Processing/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/Libigl/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/tags/CGAL/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://unclejimbo.github.io/categories/C/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/categories/Computer-Graphics/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclejimbo.github.io/categories/Computer-Vision/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>

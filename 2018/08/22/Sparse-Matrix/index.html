@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"unclejimbo.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Here I’ve compiled a list of functions to manipulate Eigen::SparseMatrix in Libigl, due to the lack of documentation. Up-to-date with commit 1f5a0c1.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sparse Matrix Manipulation in Libigl">
+<meta property="og:url" content="https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/index.html">
+<meta property="og:site_name" content="unclejimbo&#39;s site">
+<meta property="og:description" content="Here I’ve compiled a list of functions to manipulate Eigen::SparseMatrix in Libigl, due to the lack of documentation. Up-to-date with commit 1f5a0c1.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-08-21T16:18:05.000Z">
+<meta property="article:modified_time" content="2022-04-21T06:23:54.275Z">
+<meta property="article:author" content="unclejimbo">
+<meta property="article:tag" content="Eigen">
+<meta property="article:tag" content="Computer Graphics">
+<meta property="article:tag" content="Geometry Processing">
+<meta property="article:tag" content="Libigl">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Sparse Matrix Manipulation in Libigl | unclejimbo's site</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97325233-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-97325233-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d49dcec5473b8cd98f08b6169b720538";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">unclejimbo's site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-posts">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Posts</a>
+
+  </li>
+        <li class="menu-item menu-item-publications">
+
+    <a href="/publications" rel="section"><i class="fa fa-book fa-fw"></i>Publications</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.png">
+      <meta itemprop="name" content="unclejimbo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unclejimbo's site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Sparse Matrix Manipulation in Libigl
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-08-22 00:18:05" itemprop="dateCreated datePublished" datetime="2018-08-22T00:18:05+08:00">2018-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-21 14:23:54" itemprop="dateModified" datetime="2022-04-21T14:23:54+08:00">2022-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Graphics/" itemprop="url" rel="index"><span itemprop="name">Computer Graphics</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2018/08/22/Sparse-Matrix/" class="post-meta-item leancloud_visitors" data-flag-title="Sparse Matrix Manipulation in Libigl" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2018/08/22/Sparse-Matrix/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/22/Sparse-Matrix/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Here I’ve compiled a list of functions to manipulate <code>Eigen::SparseMatrix</code> in <a target="_blank" rel="noopener" href="https://github.com/libigl/libigl">Libigl</a>, due to the lack of documentation.</p>
+<p>Up-to-date with commit <a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/commit/1f5a0c100a70ae487f673e3a76110cad4fb983d3">1f5a0c1</a>.</p>
+<span id="more"></span>
+
+<h1 id="Creation"><a href="#Creation" class="headerlink" title="Creation"></a>Creation</h1><h2 id="cat-h"><a href="#cat-h" class="headerlink" title="cat.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/cat.h">cat.h</a></h2><p>Concatenate two <code>SparseMatrix</code>.</p>
+<h2 id="diag-h"><a href="#diag-h" class="headerlink" title="diag.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/diag.h">diag.h</a></h2><p>Extract the diagonal entries of a  <code>SparseMatrix</code> into a <code>Vector</code> and vice-versa. This is superceded by</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VectorXd V = X.<span class="built_in">diagonal</span>() <span class="keyword">and</span></span><br><span class="line">SparseVector&lt;<span class="type">double</span>&gt; V = X.<span class="built_in">diagonal</span>().<span class="built_in">sparseView</span>()</span><br><span class="line">SparseMatrix&lt;<span class="type">double</span>&gt; X = V.<span class="built_in">asDiagonal</span>().<span class="built_in">sparseView</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="invert-diag-h"><a href="#invert-diag-h" class="headerlink" title="invert_diag.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/invert_diag.h">invert_diag.h</a></h2><p>Invert the diagonal entries of a <code>SparseMatrix</code>.</p>
+<h2 id="repdiag-h"><a href="#repdiag-h" class="headerlink" title="repdiag.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/repdiag.h">repdiag.h</a></h2><p>Repeat a <code>SparseMatrix</code> on the diagonal n times to form a new <code>SparseMatrix</code>.</p>
+<h2 id="repmat-h"><a href="#repmat-h" class="headerlink" title="repmat.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/repmat.h">repmat.h</a></h2><p>Repeat a <code>SparseMatrix</code> along the columns and rows to form a r by c <code>SparseMatrix</code>.</p>
+<h2 id="sparse-h"><a href="#sparse-h" class="headerlink" title="sparse.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/sparse.h">sparse.h</a></h2><p>Create a <code>SparseMatrix</code> from indices and values. It’s a simple wrapper to the <code>Eigen::SparseMatrix::setFromTriplets</code> method.</p>
+<h2 id="sparse-cached-h"><a href="#sparse-cached-h" class="headerlink" title="sparse_cached.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/sparse_cached.h">sparse_cached.h</a></h2><p>Faster version of <code>sparse</code> using cached data.</p>
+<h2 id="speye-h"><a href="#speye-h" class="headerlink" title="speye.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/speye.h">speye.h</a></h2><p>Create a sparse identity matrix.</p>
+<h1 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h1><h2 id="is-sparse-h"><a href="#is-sparse-h" class="headerlink" title="is_sparse.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/is_sparse.h">is_sparse.h</a></h2><p>Determine if a matrix is <code>SparseMatrx</code>.</p>
+<h2 id="is-symmetric-h"><a href="#is-symmetric-h" class="headerlink" title="is_symmetric.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/is_symmetric.h">is_symmetric.h</a></h2><p>Determine if a <code>SparseMatrix</code> is symmetric.</p>
+<h2 id="is-diag-h"><a href="#is-diag-h" class="headerlink" title="is_diag.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/is_diag.h">is_diag.h</a></h2><p>Determine if a <code>SparseMatrix</code> is diagonal.</p>
+<h1 id="Coefficient-wise-Operation"><a href="#Coefficient-wise-Operation" class="headerlink" title="Coefficient-wise Operation"></a>Coefficient-wise Operation</h1><h2 id="for-each"><a href="#for-each" class="headerlink" title="for_each"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/for_each.h">for_each</a></h2><p>Apply a function for each non-zero element. Could be replaced with <a target="_blank" rel="noopener" href="http://eigen.tuxfamily.org/dox/classEigen_1_1SparseMatrixBase.html#af9bed5dea96bdaf17ffd1a76ab0aedb1"><code>Eigen::SparseMatrix::unaryExpr</code></a>.</p>
+<p>Note that <code>Eigen::SparseMatrix</code> also provides a lot of coefficient-wise operations to use.</p>
+<h1 id="Reduction-and-Visitor"><a href="#Reduction-and-Visitor" class="headerlink" title="Reduction and Visitor"></a>Reduction and Visitor</h1><h2 id="all-h"><a href="#all-h" class="headerlink" title="all.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/all.h">all.h</a></h2><p>Return true if all coefficients in a row&#x2F;column of a <code>SparseMatrix</code> are true.</p>
+<h2 id="any-h"><a href="#any-h" class="headerlink" title="any.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/any.h">any.h</a></h2><p>Return true if any coefficient in a row&#x2F;column of a <code>SparseMatrix</code> is true.</p>
+<h2 id="count-h"><a href="#count-h" class="headerlink" title="count.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/count.h">count.h</a></h2><p>Return the number of coefficients that are true in each row&#x2F;column in a given <code>SparseMatrix</code>.</p>
+<h2 id="find-h"><a href="#find-h" class="headerlink" title="find.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/find.h">find.h</a></h2><p>Get the values and indices of non-zero elements in a <code>SparseMatrix</code>. It’s a convinient wrapper to:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SparseMatrix&lt;<span class="type">double</span>&gt; <span class="title">mat</span><span class="params">(rows,cols)</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> k=<span class="number">0</span>; k&lt;mat.<span class="built_in">outerSize</span>(); ++k)</span><br><span class="line">  <span class="keyword">for</span> (SparseMatrix&lt;<span class="type">double</span>&gt;::InnerIterator <span class="built_in">it</span>(mat,k); it; ++it)</span><br><span class="line">  &#123;</span><br><span class="line">    it.<span class="built_in">value</span>();</span><br><span class="line">    it.<span class="built_in">row</span>();   <span class="comment">// row index</span></span><br><span class="line">    it.<span class="built_in">col</span>();   <span class="comment">// col index (here it is equal to k)</span></span><br><span class="line">    it.<span class="built_in">index</span>(); <span class="comment">// inner index, here it is equal to it.row()</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="find-zero-h"><a href="#find-zero-h" class="headerlink" title="find_zero.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/find_zero.h">find_zero.h</a></h2><p>Return the first zero rows&#x2F;columns of a <code>SparseMatrix</code>.</p>
+<h2 id="max-h"><a href="#max-h" class="headerlink" title="max.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/max.h">max.h</a></h2><p>Return the values and indices of the maximum elements of each row&#x2F;column in a <code>SparseMatrix</code>.</p>
+<h2 id="min-h"><a href="#min-h" class="headerlink" title="min.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/min.h">min.h</a></h2><p>Return the values and indices of the minimum elements of each row&#x2F;column in a <code>SparseMatrix</code>.</p>
+<h2 id="redux-h"><a href="#redux-h" class="headerlink" title="redux.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/redux.h">redux.h</a></h2><p>Run a function to reduce the <code>SparseMatrix</code> colwise&#x2F;rowwise.</p>
+<h2 id="sum-h"><a href="#sum-h" class="headerlink" title="sum.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/sum.h">sum.h</a></h2><p>Return the colwise&#x2F;rowwise sum of a <code>SparseMatrix</code>.</p>
+<h1 id="Slicing"><a href="#Slicing" class="headerlink" title="Slicing"></a>Slicing</h1><h2 id="slice-h"><a href="#slice-h" class="headerlink" title="slice.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/slice.h">slice.h</a></h2><p>Slice a <code>SparseMatrix</code> into a sub-matrix.</p>
+<h2 id="slice-cached-h"><a href="#slice-cached-h" class="headerlink" title="slice_cached.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/slice_cached.h">slice_cached.h</a></h2><p>Faster version of <code>slice</code> using cached data.</p>
+<h2 id="slice-into-h"><a href="#slice-into-h" class="headerlink" title="slice_into.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/slice_into.h">slice_into.h</a></h2><p>Copy a <code>SparseMatrix</code> into a slice of another one.</p>
+<h2 id="slice-mask-h"><a href="#slice-mask-h" class="headerlink" title="slice_mask.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/slice_mask.h">slice_mask.h</a></h2><p>Slice using mask instead of indices.</p>
+<h1 id="Decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h1><h2 id="eigs-h"><a href="#eigs-h" class="headerlink" title="eigs.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/eigs.h">eigs.h</a></h2><p>Eigen value decomposition. See <a target="_blank" rel="noopener" href="https://spectralib.org/">Spectra</a> for a more sophisticated solution.</p>
+<h1 id="Other-Utilities"><a href="#Other-Utilities" class="headerlink" title="Other Utilities"></a>Other Utilities</h1><h2 id="print-ijv-h"><a href="#print-ijv-h" class="headerlink" title="print_ijv.h"></a><a target="_blank" rel="noopener" href="https://github.com/libigl/libigl/blob/master/include/igl/print_ijv.h">print_ijv.h</a></h2><p>Print the indices and values of non-zero entries.</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>unclejimbo
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/" title="Sparse Matrix Manipulation in Libigl">https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Eigen/" rel="tag"># Eigen</a>
+              <a href="/tags/Computer-Graphics/" rel="tag"># Computer Graphics</a>
+              <a href="/tags/Geometry-Processing/" rel="tag"># Geometry Processing</a>
+              <a href="/tags/Libigl/" rel="tag"># Libigl</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Creation"><span class="nav-number">1.</span> <span class="nav-text">Creation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat-h"><span class="nav-number">1.1.</span> <span class="nav-text">cat.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diag-h"><span class="nav-number">1.2.</span> <span class="nav-text">diag.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invert-diag-h"><span class="nav-number">1.3.</span> <span class="nav-text">invert_diag.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repdiag-h"><span class="nav-number">1.4.</span> <span class="nav-text">repdiag.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repmat-h"><span class="nav-number">1.5.</span> <span class="nav-text">repmat.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sparse-h"><span class="nav-number">1.6.</span> <span class="nav-text">sparse.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sparse-cached-h"><span class="nav-number">1.7.</span> <span class="nav-text">sparse_cached.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#speye-h"><span class="nav-number">1.8.</span> <span class="nav-text">speye.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Predicate"><span class="nav-number">2.</span> <span class="nav-text">Predicate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#is-sparse-h"><span class="nav-number">2.1.</span> <span class="nav-text">is_sparse.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#is-symmetric-h"><span class="nav-number">2.2.</span> <span class="nav-text">is_symmetric.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#is-diag-h"><span class="nav-number">2.3.</span> <span class="nav-text">is_diag.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Coefficient-wise-Operation"><span class="nav-number">3.</span> <span class="nav-text">Coefficient-wise Operation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for-each"><span class="nav-number">3.1.</span> <span class="nav-text">for_each</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reduction-and-Visitor"><span class="nav-number">4.</span> <span class="nav-text">Reduction and Visitor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#all-h"><span class="nav-number">4.1.</span> <span class="nav-text">all.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#any-h"><span class="nav-number">4.2.</span> <span class="nav-text">any.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count-h"><span class="nav-number">4.3.</span> <span class="nav-text">count.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-h"><span class="nav-number">4.4.</span> <span class="nav-text">find.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-zero-h"><span class="nav-number">4.5.</span> <span class="nav-text">find_zero.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#max-h"><span class="nav-number">4.6.</span> <span class="nav-text">max.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#min-h"><span class="nav-number">4.7.</span> <span class="nav-text">min.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redux-h"><span class="nav-number">4.8.</span> <span class="nav-text">redux.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sum-h"><span class="nav-number">4.9.</span> <span class="nav-text">sum.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Slicing"><span class="nav-number">5.</span> <span class="nav-text">Slicing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-h"><span class="nav-number">5.1.</span> <span class="nav-text">slice.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-cached-h"><span class="nav-number">5.2.</span> <span class="nav-text">slice_cached.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-into-h"><span class="nav-number">5.3.</span> <span class="nav-text">slice_into.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice-mask-h"><span class="nav-number">5.4.</span> <span class="nav-text">slice_mask.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decomposition"><span class="nav-number">6.</span> <span class="nav-text">Decomposition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eigs-h"><span class="nav-number">6.1.</span> <span class="nav-text">eigs.h</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Other-Utilities"><span class="nav-number">7.</span> <span class="nav-text">Other Utilities</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#print-ijv-h"><span class="nav-number">7.1.</span> <span class="nav-text">print_ijv.h</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="unclejimbo"
+      src="/images/me.png">
+  <p class="site-author-name" itemprop="name">unclejimbo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/unclejimbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;unclejimbo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wangsd@ios.ac.cn" title="E-Mail → mailto:wangsd@ios.ac.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">unclejimbo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"JVGcFwDqMgSaNGKdFXnKQLH5-gzGzoHsz","app_key":"Vc3vhEn4KvHJX7OTHMpugy14","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://unclejimbos.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://unclejimbo.github.io/2018/08/22/Sparse-Matrix/";
+    this.page.identifier = "2018/08/22/Sparse-Matrix/";
+    this.page.title = "Sparse Matrix Manipulation in Libigl";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://unclejimbos.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

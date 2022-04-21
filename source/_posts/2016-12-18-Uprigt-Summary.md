@@ -18,7 +18,7 @@ Detecting the upright orientation of a 3d shape is a basic yet difficult problem
 
 (*Upright orientation of a chair*)
 
-<!--- more --->
+<!-- more -->
 
 For many shapes, there exist natural bases where they naturally stand on so the upright direction should be the normal to that base. However, other shapes (consider a swimmer) may not exhibit a clear standing base so telling this problem could be more subtle.
 

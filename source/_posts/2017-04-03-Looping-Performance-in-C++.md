@@ -9,7 +9,7 @@ tags:
 
 Today I was testing the performance of a piece of code, which is basically accessing each element in a container within a for loop. But the result is quite shocking because I found the std::for_each version is 10 times faster than the raw loop. What?
 
-<!--- more --->
+<!-- more -->
 
 # Test for yourself
 

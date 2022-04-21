@@ -13,7 +13,7 @@ CMake has followed the C++ standard on the road to modernization, which leads to
 
 Here I'll present a detailed explaination on how to use modern CMake, especially for library developers who want to package their libraries for downstream developers to use easily with CMake. Basic knowledge of CMake is preferred, as I'll not cover too much on some basic commands.
 
-<!--- more --->
+<!-- more -->
 
 # Project Structure
 

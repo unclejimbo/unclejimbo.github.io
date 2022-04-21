@@ -14,7 +14,7 @@ tags:
 ![](http://doc.cgal.org/latest/Surface_mesh_simplification/Illustration-Simplification-ALL.jpg)
 (*Mesh smoothing algorithm, picture taken from the [CGAL document](http://doc.cgal.org/latest/Surface_mesh_simplification/index.html#Chapter_Triangulated_Surface_Mesh_Simplification)*).
 
-<!--- more --->
+<!-- more -->
 
 # Preliminaries
 
@@ -41,7 +41,7 @@ Halfedge_handle CGAL::Polyhedron_3< Traits >::make_tetrahedron(
     const Point& p1,
     const Point& p2,
     const Point& p3,
-    const Point& p4 
+    const Point& p4
 );
 
 ```
@@ -52,11 +52,11 @@ You can also read from a file, which is what we usually need in practice. Althou
 #include <CGAL/IO/Polyhedron_iostream.h>
 
 template <class PolyhedronTraits_3>
-ostream& operator<<( ostream& out, 
+ostream& operator<<( ostream& out,
 const CGAL::Polyhedron_3<PolyhedronTraits_3>& P);
 
 template <class PolyhedronTraits_3>
-istream& operator>>( istream& in, 
+istream& operator>>( istream& in,
 CGAL::Polyhedron_3<PolyhedronTraits_3>& P);
 ```
 
@@ -188,13 +188,13 @@ template<typename TriangleMesh, typename VertexRange, typename NamedParameters>
 bool CGAL::Polygon_mesh_processing::fair(
     TriangleMesh& tmesh,
     const VertexRange& vertices,
-    const NamedParameters& np 
+    const NamedParameters& np
 )
 ```
 
 This function takes in a mesh and range of vertices you want to fair, and smoothes out the mesh as much as possible. The np parameter is not important here. So how does CGAL make this function work on all the data structure? We should look into the source code in file "CGAL\Polygon_mesh_processing\internal\fair_impl.h" to see what happens.
 
-We could see that the algorithm is implemented with the graph concept api rather than any class-specific interface. 
+We could see that the algorithm is implemented with the graph concept api rather than any class-specific interface.
 
 ```cpp
 //...

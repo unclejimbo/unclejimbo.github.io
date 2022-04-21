@@ -18,7 +18,7 @@ The idea of vertex specification is pretty simple, after you submit data to Open
 
 What's the fuss about those funny names? It really needs more conceptual explanations before those words could make any sense.
 
-<!--- more --->
+<!-- more -->
 
 # Vertex Attribute
 
@@ -44,7 +44,7 @@ void main()
 {
     //...
 }
-``` 
+```
 
 Although `attribute` was deprecated since OpenGL 3.3 (as well as `varying`), this term still remains in the API, such as `glVertexAttribPointer` and `glEnableVertexAttribArray`. Now let's talk more about them.
 

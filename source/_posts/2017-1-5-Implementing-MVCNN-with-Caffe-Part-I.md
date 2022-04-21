@@ -20,7 +20,7 @@ The complete codes and scripts in this blog can be found at my [GitHub repo](htt
 ![](https://camo.githubusercontent.com/f505454fa4d971db8b85b35ad7cac63795d3eaa0/687474703a2f2f7669732d7777772e63732e756d6173732e6564752f6d76636e6e2f696d616765732f6d76636e6e2e706e67)
 (*The network architecture of MVCNN*)
 
-<!--- more --->
+<!-- more -->
 
 # The Power of Multi-View
 

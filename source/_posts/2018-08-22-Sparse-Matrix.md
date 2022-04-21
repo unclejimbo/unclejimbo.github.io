@@ -14,7 +14,7 @@ Here I've compiled a list of functions to manipulate `Eigen::SparseMatrix` in [L
 
 Up-to-date with commit [1f5a0c1](https://github.com/libigl/libigl/commit/1f5a0c100a70ae487f673e3a76110cad4fb983d3).
 
-<!--- more --->
+<!-- more -->
 
 # Creation
 

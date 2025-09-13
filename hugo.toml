@@ -8,6 +8,17 @@ theme = "light"
 palette = "dracula"
 showThemeNotice = true
 
+[params.giscus]
+repository = "unclejimbo/unclejimbo.github.io"
+repositoryId = "MDEwOlJlcG9zaXRvcnk0MTAwODMwNA=="
+categoryName = "Announcements"
+categoryId = "DIC_kwDOAnG8sM4CvZls"
+mapping = "pathname"
+theme = "preferred_color_scheme"
+language = "en"
+lazyLoading = true
+data-input-position="top"
+
 [outputs]
   home = ['html', 'rss']
   section = ['html', 'rss']

@@ -2,6 +2,7 @@
 title: Mesh Processing with CGAL
 date: 2017-06-14 14:24:34
 toc: true
+comments: true
 categories:
 - Computer Graphics
 tags:

@@ -2,6 +2,7 @@
 title: Some Notes on OpenGL Vertex Specification
 date: 2017-08-13 11:34:09
 toc: true
+comments: true
 categories:
 - Computer Graphics
 tags:

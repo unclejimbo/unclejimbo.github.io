@@ -2,6 +2,7 @@
 title: Upright Orientation Detection Methods
 date: 2016-12-15
 toc: true
+comments: true
 categories:
 - Computer Graphics
 tags:

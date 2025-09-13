@@ -2,6 +2,7 @@
 title: 'Implementing MVCNN with Caffe, Part I'
 date: 2017-01-05
 toc: true
+comments: true
 categories:
 - Computer Vision
 tags:

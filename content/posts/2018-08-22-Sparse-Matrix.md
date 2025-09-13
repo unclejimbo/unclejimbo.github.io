@@ -1,6 +1,7 @@
 ---
 title: Sparse Matrix Manipulation in Libigl
 toc: true
+comments: true
 tags:
   - Computer Graphics
   - Geometry Processing

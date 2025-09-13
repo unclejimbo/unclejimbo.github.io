@@ -1,6 +1,7 @@
 ---
 title: Modern CMake for Library Developers
 toc: true
+comments: true
 tags:
   - C++
   - CMake

@@ -5,7 +5,10 @@
     <div style="color:#555;">{{ .Get "authors" }}</div>
     <div style="color:#888;">{{ .Get "venue" }}{{ with .Get "year" }}, {{ . }}{{ end }}</div>
     {{ if .Get "pdf" }}
-      <div><a href="{{ .Get "link" }}" target="_blank">pdf</a></div>
+      <div><a href="{{ .Get "pdf" }}" target="_blank">pdf</a></div>
+    {{ end }}
+    {{ if .Get "link" }}
+      <div><a href="{{ .Get "link" }}" target="_blank">link</a></div>
     {{ end }}
     {{ .Inner }}
     <br>

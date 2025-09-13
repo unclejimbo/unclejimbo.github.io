@@ -8,7 +8,7 @@ title = "Publications"
     authors="{Shaodong Wang}, Wencheng Wang, Hui Zhao"
     venue="IEEE Transaction on Visualization and Compute Graphics (TVCG)"
     year="2022"
-    pdf="wzw22.pdf"
+    pdf="https://drive.google.com/file/d/17M0YibdwTv210qfMxhxgd-QDeOCIYOJc/view?usp=sharing"
 >}}
 {{< /pubitem >}}
 
@@ -18,7 +18,7 @@ title = "Publications"
     authors="{Shaodong Wang}, Shuai Ma, Hui Zhao, Wencheng Wang"
     venue="Shape Modeling International (SMI)"
     year="2021, Best Paper Award Honourable Mention"
-    pdf="wzw22.pdf"
+    pdf="https://drive.google.com/file/d/1ulvgzK-0nsKLu88jAkLqW_JhxkH4GcY2/view?usp=sharing"
 >}}
 {{< /pubitem >}}
 
@@ -28,7 +28,7 @@ title = "Publications"
     authors="Hui Zhao, {Shaodong Wang}, Wencheng Wang"
     venue="IEEE Transaction on Visualization and Compute Graphics (TVCG)"
     year="2020"
-    pdf="zww20.pdf"
+    pdf="https://drive.google.com/file/d/19EoC-o_DBuWEros02Pqgsh9zDDnrUyof/view?usp=sharing"
 >}}
 {{< /pubitem >}}
 
@@ -38,7 +38,7 @@ title = "Publications"
     authors="Hui Zhao, Xuan Li, Wencheng Wang, Xiaoling Wang, {Shaodong Wang}, Xianfeng Gu"
     venue="Pacific Graphics (PG)"
     year="2019"
-    pdf="zlwwwlg19.pdf"
+    pdf="https://xuan-li.github.io/pdf/publications/PolycubeSpace2019-Camera-Low.pdf"
 >}}
 {{< /pubitem >}}
 
@@ -48,6 +48,6 @@ title = "Publications"
     authors="Xiang Zhang, {Shaodong Wang}, Yuxia Wang"
     venue="Acta Geodaetica et Cartographica Sinica"
     year="2016"
-    pdf="zww16.pdf"
+    link="https://www.researchgate.net/publication/307851774_Clutter-free_Visualization_of_Large_Point_Symbols_at_Multiple_Scales_by_Offset_Quadtrees"
 >}}
 {{< /pubitem >}}

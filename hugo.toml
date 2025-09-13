@@ -1,0 +1,60 @@
+baseURL = 'https://unclejimbo.github.io'
+languageCode = 'en-us'
+title = "unclejimbo's site"
+theme = 'not-much'
+
+[params]
+theme = "light"
+palette = "dracula"
+showThemeNotice = true
+
+[outputs]
+  home = ['html', 'rss']
+  section = ['html', 'rss']
+  taxonomy = ['html']
+  term = ['html']
+
+[menu]
+  [[menu.main]]
+    identifier = "Home"
+    name = "Home"
+    title = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "Posts"
+    name = "Posts"
+    title = "Posts"
+    url = "/posts"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "Tags"
+    name = "Tags"
+    title = "Tags"
+    url = "/tags"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "Publications"
+    name = "Publications"
+    title = "Publications"
+    url = "/publications"
+    weight = 4
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+[markup]
+  # Table of contents
+  # Add toc = true to content front matter to enable
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel   = 2
+    ordered    = true
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
